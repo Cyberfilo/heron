@@ -2,7 +2,7 @@
   "tools": [
     {
       "rank": 1,
-      "grade": 63.3,
+      "grade": 62.0,
       "adapter": "vanna",
       "tool": "Vanna",
       "model": "openai/gpt-4o",
@@ -25,8 +25,8 @@
         "lexical-gap": 27.3
       },
       "avg_gen_ms": 1463.9,
-      "avg_exec_ms": 168.9,
-      "avg_total_ms": 1632.8,
+      "avg_exec_ms": 142.2,
+      "avg_total_ms": 1606.1,
       "avg_tokens": 1999.9,
       "total_tokens": 199994,
       "token_coverage": "100/100",
@@ -39,14 +39,14 @@
     },
     {
       "rank": 2,
-      "grade": 61.2,
+      "grade": 59.9,
       "adapter": "promptquery",
       "tool": "PromptQuery",
       "model": "openai/gpt-4o",
       "n": 100,
       "errors": 7,
       "ex_at_1": 58.0,
-      "ves": 57.8,
+      "ves": 57.2,
       "soft_f1": 60.2,
       "set_recall": 98.0,
       "ex_by_shape": {
@@ -62,8 +62,8 @@
         "lexical-gap": 36.4
       },
       "avg_gen_ms": 2210.5,
-      "avg_exec_ms": 54.0,
-      "avg_total_ms": 2264.5,
+      "avg_exec_ms": 117.2,
+      "avg_total_ms": 2327.7,
       "avg_tokens": 4256.9,
       "total_tokens": 425690,
       "token_coverage": "100/100",
@@ -76,14 +76,14 @@
     },
     {
       "rank": 3,
-      "grade": 56.4,
+      "grade": 56.8,
       "adapter": "raw-llm",
       "tool": "raw-gpt-4o",
       "model": "openai/gpt-4o",
       "n": 100,
       "errors": 10,
       "ex_at_1": 55.0,
-      "ves": 54.7,
+      "ves": 55.4,
       "soft_f1": 56.8,
       "set_recall": null,
       "ex_by_shape": {
@@ -99,8 +99,8 @@
         "lexical-gap": 54.5
       },
       "avg_gen_ms": 1390.9,
-      "avg_exec_ms": 288.3,
-      "avg_total_ms": 1679.2,
+      "avg_exec_ms": 16.4,
+      "avg_total_ms": 1407.3,
       "avg_tokens": 15313.8,
       "total_tokens": 1531381,
       "token_coverage": "100/100",
@@ -113,14 +113,14 @@
     },
     {
       "rank": 4,
-      "grade": 49.0,
+      "grade": 48.1,
       "adapter": "mac-sql",
       "tool": "MAC-SQL",
       "model": "openai/gpt-4o",
       "n": 100,
       "errors": 3,
       "ex_at_1": 49.0,
-      "ves": 49.3,
+      "ves": 48.7,
       "soft_f1": 51.7,
       "set_recall": 90.0,
       "ex_by_shape": {
@@ -136,8 +136,8 @@
         "lexical-gap": 27.3
       },
       "avg_gen_ms": 2943.2,
-      "avg_exec_ms": 23.3,
-      "avg_total_ms": 2966.5,
+      "avg_exec_ms": 53.3,
+      "avg_total_ms": 2996.5,
       "avg_tokens": 15655.7,
       "total_tokens": 1565567,
       "token_coverage": "100/100",
@@ -150,15 +150,15 @@
     },
     {
       "rank": 5,
-      "grade": 48.5,
+      "grade": 48.0,
       "adapter": "din-sql",
       "tool": "DIN-SQL",
       "model": "openai/gpt-4o",
       "n": 100,
       "errors": 6,
       "ex_at_1": 52.0,
-      "ves": 53.4,
-      "soft_f1": 54.9,
+      "ves": 53.0,
+      "soft_f1": 54.8,
       "set_recall": 90.0,
       "ex_by_shape": {
         "single": 58.6,
@@ -173,8 +173,8 @@
         "lexical-gap": 45.5
       },
       "avg_gen_ms": 5101.0,
-      "avg_exec_ms": 22.3,
-      "avg_total_ms": 5123.3,
+      "avg_exec_ms": 51.7,
+      "avg_total_ms": 5152.7,
       "avg_tokens": 16343.3,
       "total_tokens": 1634328,
       "token_coverage": "100/100",
@@ -184,44 +184,14 @@
       "token_source": "self-reported (re-runnable via the committed adapter)",
       "verified": true,
       "verifier": "harness/score_submission.py"
-    },
-    {
-      "rank": 6,
-      "grade": 17.9,
-      "adapter": "langchain",
-      "tool": "LangChain",
-      "model": "openai/gpt-4o",
-      "n": 100,
-      "errors": 48,
-      "ex_at_1": 15.2,
-      "ves": 15.1,
-      "soft_f1": 17.1,
-      "set_recall": null,
-      "ex_by_shape": {
-        "single": 19.0,
-        "join": 12.5,
-        "multi-join": 8.3,
-        "analytical": 0.0
-      },
-      "ex_by_retrieval": {
-        "named": 19.6,
-        "1-hop": 11.1,
-        "2-hop+": 10.0,
-        "lexical-gap": 9.1
-      },
-      "avg_gen_ms": 6428.3,
-      "avg_exec_ms": 75.3,
-      "avg_total_ms": 6503.6,
-      "avg_tokens": 101150.8,
-      "total_tokens": 10115078,
-      "token_coverage": "100/100",
-      "prompt_tokens": 10105365,
-      "completion_tokens": 9713,
-      "est_cost_usd": 25.3605,
-      "token_source": "self-reported (re-runnable via the committed adapter)",
-      "verified": true,
-      "verifier": "harness/score_submission.py"
     }
   ],
-  "rejected": []
+  "rejected": [
+    {
+      "tool": "LangChain",
+      "issues": [
+        "claimed EX@1 16.0 but the submitted SQL only reproduces 3.0 (> 2.0pt gap) \u2014 results look inflated or stale."
+      ]
+    }
+  ]
 }
