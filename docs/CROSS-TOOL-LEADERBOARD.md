@@ -13,11 +13,13 @@ and **exact OpenAI-billed token counts** (no estimates). Full tool survey + inte
 > That's exactly what we want to isolate. Unfavorable results are kept on purpose — including that
 > heron's own namesake tool does **not** top the Grade.
 
-> ℹ️ **The canonical, always-current standings are auto-generated in [`LEADERBOARD.md`](LEADERBOARD.md)**
-> — CI re-runs every submitted tool's SQL and recomputes the numbers on one machine (so Grades/VES
-> there can differ by ~1 point from the maintainer-run figures quoted in the analysis below; EX,
-> Set-Recall, and tokens are identical). This page is the hand-written deep-dive; the leaderboard is
-> the source of truth. To add a tool, see [`../CONTRIBUTING.md`](../CONTRIBUTING.md).
+> ℹ️ **The canonical, always-current standings are auto-generated** at the top of the
+> [README](../README.md#-leaderboard) and in [`../leaderboard.json`](../leaderboard.json) /
+> [`../leaderboard.csv`](../leaderboard.csv) — CI re-runs every submitted tool's SQL and recomputes
+> the numbers on one machine (so Grades/VES there can differ by ~1 point from the maintainer-run
+> figures quoted in the analysis below; EX, Set-Recall, and tokens are identical). This page is the
+> hand-written deep-dive; the auto-generated leaderboard is the source of truth. To add a tool, see
+> [`../CONTRIBUTING.md`](../CONTRIBUTING.md).
 
 ## Results — v1 (100 questions, gpt-4o, exact tokens + Grade)
 
@@ -37,7 +39,8 @@ All six tools run the **same 100 questions** on gpt-4o (temp 0). Ranked by **Gra
 _Grade = .45·EX + .20·EFF + .10·REL(1−err) + .15·TOK + .10·LAT, renormalized over exposed dims;
 EFF = min(100, VES); TOK/LAT anchored to the most efficient tool in the field. Tokens are OpenAI's
 billed `response.usage` (exact, captured uniformly via the harness usage meter). Full v1 matrix costs
-**$39.07** to run once. Regenerate: `python harness/leaderboard.py --label "PromptQuery=results_prq_v1.json" …`_
+**$39.07** to run once. The live standings regenerate via `python harness/build_leaderboard.py --dsn …`
+from [`../submissions/`](../submissions/)._
 
 **Grade sub-scores (so you can re-rank to your own priorities):**
 
@@ -141,7 +144,7 @@ usage (Vanna, LangChain)._
 | 4 | LangChain | 17.5% | n/a | 20.8 | 18.2 | 0.0 | 0.0 | 21/40 |
 
 _(all gpt-4o, temp 0, single-state EX@1, 40 questions, heron `small`. Regenerate:
-`python harness/leaderboard.py --label "PromptQuery=results_prq_gpt4o.json" ...`)_
+raw run JSONs archived under [`../data/archive/`](../data/archive/).)_
 
 **The read:**
 - **Retrieval-aware tools lead.** PromptQuery (47.5%, **100% Set-Recall** — found every required

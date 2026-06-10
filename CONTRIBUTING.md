@@ -64,25 +64,40 @@ make up && make schema && make seed SCALE=small SEED=42      # the gold database
 make bench ADAPTER=<name> MODEL=openai/gpt-4o                # writes results_<name>.json + prints $ cost
 ```
 
-### 3. Turn the run into a submission
+### 3. Package the submission folder
 ```bash
 python harness/make_submission.py results_<name>.json --tool "<Display Name>" --repo <your-repo-url>
-# → submissions/<name>.json
+# → submissions/<name>/  containing results.json + meta.json + adapter.py
 ```
 
 ### 4. Open the PR
-Commit **your adapter** (`harness/adapters/<name>.py` + the one-line registration) and
-**`submissions/<name>.json`**. Do **not** touch `docs/LEADERBOARD.md` — it's auto-generated. Open the
-PR with the [add-a-tool template](.github/PULL_REQUEST_TEMPLATE/add-a-tool.md) (append
+Commit the whole **`submissions/<name>/`** folder (it already holds a snapshot of your adapter). Do
+**not** touch `leaderboard.svg` / `leaderboard.json` / `leaderboard.csv` — they're auto-generated.
+Open the PR with the [add-a-tool template](.github/PULL_REQUEST_TEMPLATE/add-a-tool.md) (append
 `?template=add-a-tool.md` to the PR URL).
 
 ### What the bot does (so you don't)
-- **On your PR** (`verify-submission`): re-executes every `pred_sql` in your file against a fresh gold
-  DB and recomputes EX@1 / VES / Soft-F1 / Set-Recall / errors / timing. Verified numbers show in the
-  PR's checks. The check **fails** if the submission is incomplete (not all 100), uses a non-`gpt-4o`
-  model, contains non-`SELECT` SQL, or claims an accuracy its own SQL can't reproduce.
-- **On merge** (`update-leaderboard`): regenerates `docs/LEADERBOARD.md` from all submissions and
-  commits it.
+- **On your PR** (`verify-submission`): re-executes every `pred_sql` in `submissions/<name>/results.json`
+  against a fresh gold DB and recomputes EX@1 / VES / Soft-F1 / Set-Recall / errors / timing. Verified
+  numbers show in the PR's checks. The check **fails** if the submission is incomplete (not all 100),
+  uses a non-`gpt-4o` model, contains non-`SELECT` SQL, or claims an accuracy its own SQL can't reproduce.
+- **On merge** (`update-leaderboard`): re-scores all submissions, updates the master `leaderboard.json`,
+  and regenerates `leaderboard.svg` + `leaderboard.csv` — then commits them. The README shows the SVG.
+
+## Submitting a new benchmark for an existing tool
+
+Already on the board and you re-ran it (new version, prompt change, bug fix)? Same flow, but you're
+**updating an existing folder** instead of adding one:
+
+```bash
+make bench ADAPTER=<name> MODEL=openai/gpt-4o
+python harness/make_submission.py results_<name>.json --tool "<Display Name>" --version <ver> --repo <url>
+git add submissions/<name>/        # overwrites results.json + meta.json + adapter.py
+```
+
+Open a PR. The bot re-verifies the new run and the tool's leaderboard row updates to the new numbers
+— **no other rows change.** One folder per tool = the leaderboard always shows each tool's latest
+verified run. (This is how PromptQuery's row moved from 0.2.x to 0.3.0.)
 
 Your tool is scored on **EX@1**, **VES** (efficiency of the SQL it writes), **Soft-F1**,
 **Set-Recall@k**, reliability, token/$ economy, and the composite **0–100 Grade** — all defined in

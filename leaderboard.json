@@ -1,15 +1,18 @@
 {
+  "benchmark": "heron",
+  "model": "openai/gpt-4o",
+  "n_questions": 100,
+  "scale": "small",
   "tools": [
     {
-      "rank": 1,
-      "grade": 68.7,
+      "grade": 68.9,
       "adapter": "promptquery",
       "tool": "PromptQuery",
       "model": "openai/gpt-4o",
       "n": 100,
       "errors": 0,
       "ex_at_1": 72.0,
-      "ves": 72.2,
+      "ves": 72.1,
       "soft_f1": 73.9,
       "set_recall": 99.0,
       "ex_by_shape": {
@@ -25,8 +28,8 @@
         "lexical-gap": 72.7
       },
       "avg_gen_ms": 2357.0,
-      "avg_exec_ms": 195.7,
-      "avg_total_ms": 2552.7,
+      "avg_exec_ms": 89.1,
+      "avg_total_ms": 2446.1,
       "avg_tokens": 4689.0,
       "total_tokens": 468897,
       "token_coverage": "100/100",
@@ -35,18 +38,21 @@
       "est_cost_usd": 1.2097,
       "token_source": "self-reported (re-runnable via the committed adapter)",
       "verified": true,
-      "verifier": "harness/score_submission.py"
+      "verifier": "harness/score_submission.py",
+      "repo": "https://github.com/Cyberfilo/PromptQuery",
+      "version": "0.3.0",
+      "approach": "retrieval",
+      "rank": 1
     },
     {
-      "rank": 2,
-      "grade": 61.9,
+      "grade": 62.4,
       "adapter": "vanna",
       "tool": "Vanna",
       "model": "openai/gpt-4o",
       "n": 100,
       "errors": 18,
       "ex_at_1": 46.0,
-      "ves": 46.3,
+      "ves": 46.6,
       "soft_f1": 48.2,
       "set_recall": 79.0,
       "ex_by_shape": {
@@ -62,8 +68,8 @@
         "lexical-gap": 27.3
       },
       "avg_gen_ms": 1463.9,
-      "avg_exec_ms": 142.4,
-      "avg_total_ms": 1606.3,
+      "avg_exec_ms": 57.6,
+      "avg_total_ms": 1521.5,
       "avg_tokens": 1999.9,
       "total_tokens": 199994,
       "token_coverage": "100/100",
@@ -72,10 +78,13 @@
       "est_cost_usd": 0.5303,
       "token_source": "self-reported (re-runnable via the committed adapter)",
       "verified": true,
-      "verifier": "harness/score_submission.py"
+      "verifier": "harness/score_submission.py",
+      "repo": "https://github.com/vanna-ai/vanna",
+      "version": "0.7.9",
+      "approach": "RAG",
+      "rank": 2
     },
     {
-      "rank": 3,
       "grade": 56.7,
       "adapter": "raw-llm",
       "tool": "raw-gpt-4o",
@@ -83,7 +92,7 @@
       "n": 100,
       "errors": 10,
       "ex_at_1": 55.0,
-      "ves": 55.2,
+      "ves": 54.8,
       "soft_f1": 56.8,
       "set_recall": null,
       "ex_by_shape": {
@@ -99,8 +108,8 @@
         "lexical-gap": 54.5
       },
       "avg_gen_ms": 1390.9,
-      "avg_exec_ms": 15.2,
-      "avg_total_ms": 1406.1,
+      "avg_exec_ms": 7.3,
+      "avg_total_ms": 1398.2,
       "avg_tokens": 15313.8,
       "total_tokens": 1531381,
       "token_coverage": "100/100",
@@ -109,18 +118,20 @@
       "est_cost_usd": 3.8653,
       "token_source": "self-reported (re-runnable via the committed adapter)",
       "verified": true,
-      "verifier": "harness/score_submission.py"
+      "verifier": "harness/score_submission.py",
+      "repo": "https://github.com/Cyberfilo/heron",
+      "approach": "full-schema dump",
+      "rank": 3
     },
     {
-      "rank": 4,
-      "grade": 48.1,
+      "grade": 48.2,
       "adapter": "mac-sql",
       "tool": "MAC-SQL",
       "model": "openai/gpt-4o",
       "n": 100,
       "errors": 3,
       "ex_at_1": 49.0,
-      "ves": 48.9,
+      "ves": 49.2,
       "soft_f1": 51.7,
       "set_recall": 90.0,
       "ex_by_shape": {
@@ -136,8 +147,8 @@
         "lexical-gap": 27.3
       },
       "avg_gen_ms": 2943.2,
-      "avg_exec_ms": 52.5,
-      "avg_total_ms": 2995.7,
+      "avg_exec_ms": 23.1,
+      "avg_total_ms": 2966.3,
       "avg_tokens": 15655.7,
       "total_tokens": 1565567,
       "token_coverage": "100/100",
@@ -146,19 +157,21 @@
       "est_cost_usd": 3.997,
       "token_source": "self-reported (re-runnable via the committed adapter)",
       "verified": true,
-      "verifier": "harness/score_submission.py"
+      "verifier": "harness/score_submission.py",
+      "repo": "https://github.com/wbbeyourself/MAC-SQL",
+      "approach": "multi-agent",
+      "rank": 4
     },
     {
-      "rank": 5,
-      "grade": 47.9,
+      "grade": 48.1,
       "adapter": "din-sql",
       "tool": "DIN-SQL",
       "model": "openai/gpt-4o",
       "n": 100,
       "errors": 6,
       "ex_at_1": 52.0,
-      "ves": 52.8,
-      "soft_f1": 54.8,
+      "ves": 53.5,
+      "soft_f1": 54.9,
       "set_recall": 90.0,
       "ex_by_shape": {
         "single": 58.6,
@@ -173,8 +186,8 @@
         "lexical-gap": 45.5
       },
       "avg_gen_ms": 5101.0,
-      "avg_exec_ms": 50.8,
-      "avg_total_ms": 5151.8,
+      "avg_exec_ms": 22.0,
+      "avg_total_ms": 5123.0,
       "avg_tokens": 16343.3,
       "total_tokens": 1634328,
       "token_coverage": "100/100",
@@ -183,15 +196,50 @@
       "est_cost_usd": 4.208,
       "token_source": "self-reported (re-runnable via the committed adapter)",
       "verified": true,
-      "verifier": "harness/score_submission.py"
+      "verifier": "harness/score_submission.py",
+      "repo": "https://github.com/MohammadrezaPourreza/DIN-SQL",
+      "approach": "decomposed",
+      "rank": 5
+    },
+    {
+      "grade": 18.2,
+      "adapter": "langchain",
+      "tool": "LangChain",
+      "model": "openai/gpt-4o",
+      "n": 100,
+      "errors": 46,
+      "ex_at_1": 16.0,
+      "ves": 16.0,
+      "soft_f1": 17.9,
+      "set_recall": null,
+      "ex_by_shape": {
+        "single": 19.0,
+        "join": 16.0,
+        "multi-join": 8.3,
+        "analytical": 0.0
+      },
+      "ex_by_retrieval": {
+        "named": 19.6,
+        "1-hop": 14.3,
+        "2-hop+": 10.0,
+        "lexical-gap": 9.1
+      },
+      "avg_gen_ms": 6428.3,
+      "avg_exec_ms": 71.2,
+      "avg_total_ms": 6499.5,
+      "avg_tokens": 101150.8,
+      "total_tokens": 10115078,
+      "token_coverage": "100/100",
+      "prompt_tokens": 10105365,
+      "completion_tokens": 9713,
+      "est_cost_usd": 25.3605,
+      "token_source": "self-reported (re-runnable via the committed adapter)",
+      "verified": true,
+      "verifier": "harness/score_submission.py",
+      "repo": "https://github.com/langchain-ai/langchain",
+      "approach": "schema-dump",
+      "rank": 6
     }
   ],
-  "rejected": [
-    {
-      "tool": "LangChain",
-      "issues": [
-        "claimed EX@1 16.0 but the submitted SQL only reproduces 3.0 (> 2.0pt gap) \u2014 results look inflated or stale."
-      ]
-    }
-  ]
+  "rejected": []
 }

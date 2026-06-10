@@ -1,0 +1,7 @@
+{
+  "tool": "LangChain",
+  "adapter": "langchain",
+  "repo": "https://github.com/langchain-ai/langchain",
+  "approach": "schema-dump",
+  "submitted_by": "heron (baseline)"
+}

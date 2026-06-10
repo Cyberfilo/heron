@@ -35,7 +35,7 @@
 - [ ] **Real billed tokens captured** — via the usage meter automatically, or (if the SDK wraps the client) returned on the `Prediction`. No tiktoken estimates.
 - [ ] Ran the full **100-question** suite: `make bench ADAPTER=<name> MODEL=openai/gpt-4o`
 - [ ] Created the submission: `python harness/make_submission.py results_<name>.json --tool "<Name>" --repo <url>`
-- [ ] Committed **`submissions/<name>.json`** + the adapter — and did **not** edit `docs/LEADERBOARD.md` (the bot regenerates it)
+- [ ] Committed the **`submissions/<name>/`** folder (results.json + meta.json + adapter.py) — and did **not** edit `leaderboard.svg/json/csv` (the bot regenerates them)
 - [ ] Stated the **setup reality** below (install command, version pins, any integration gotcha)
 - [ ] The `verify-submission` check is green (CI re-ran my SQL and accepted it)
 

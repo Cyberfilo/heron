@@ -1,0 +1,7 @@
+{
+  "tool": "raw-gpt-4o",
+  "adapter": "raw-llm",
+  "repo": "https://github.com/Cyberfilo/heron",
+  "approach": "full-schema dump",
+  "submitted_by": "heron (baseline)"
+}

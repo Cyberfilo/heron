@@ -1,8 +1,4 @@
 {
-  "tool": "PromptQuery",
-  "adapter": "promptquery",
-  "repo": "https://github.com/Cyberfilo/PromptQuery",
-  "submitted_by": null,
   "summary": {
     "adapter": "promptquery",
     "model": "openai/gpt-4o",

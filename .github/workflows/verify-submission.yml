@@ -58,25 +58,25 @@ jobs:
       - name: Verify changed submissions (re-run their SQL)
         run: |
           base="${{ github.event.pull_request.base.sha }}"
-          changed=$(git diff --name-only "$base"...HEAD -- 'submissions/*.json' \
-                    | grep -v 'submissions/leaderboard.json' || true)
+          # changed submission folders = submissions/<tool>/ touched by this PR
+          changed=$(git diff --name-only "$base"...HEAD -- 'submissions/**' \
+                    | grep -E '^submissions/[^/]+/' \
+                    | sed -E 's#(submissions/[^/]+)/.*#\1#' | sort -u || true)
           if [ -z "$changed" ]; then
-            echo "No submission files changed — nothing to verify." | tee -a "$GITHUB_STEP_SUMMARY"
+            echo "No submission folders changed — nothing to verify." | tee -a "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
           echo "## heron submission verification" >> "$GITHUB_STEP_SUMMARY"
           echo "Re-ran each tool's SQL against a fresh gold DB. These are the numbers that will be published." >> "$GITHUB_STEP_SUMMARY"
           fail=0
-          for f in $changed; do
+          for d in $changed; do
             echo "" >> "$GITHUB_STEP_SUMMARY"
-            echo "### \`$f\`" >> "$GITHUB_STEP_SUMMARY"
+            echo "### \`$d\`" >> "$GITHUB_STEP_SUMMARY"
             echo '```' >> "$GITHUB_STEP_SUMMARY"
-            if python harness/score_submission.py "$f" --dsn "$DSN" >> "$GITHUB_STEP_SUMMARY" 2>&1; then
-              echo '```' >> "$GITHUB_STEP_SUMMARY"
-              echo "✅ verified" >> "$GITHUB_STEP_SUMMARY"
+            if python harness/score_submission.py "$d" --dsn "$DSN" >> "$GITHUB_STEP_SUMMARY" 2>&1; then
+              echo '```' >> "$GITHUB_STEP_SUMMARY"; echo "✅ verified" >> "$GITHUB_STEP_SUMMARY"
             else
-              echo '```' >> "$GITHUB_STEP_SUMMARY"
-              echo "❌ rejected — see reasons above" >> "$GITHUB_STEP_SUMMARY"
+              echo '```' >> "$GITHUB_STEP_SUMMARY"; echo "❌ rejected — see reasons above" >> "$GITHUB_STEP_SUMMARY"
               fail=1
             fi
           done

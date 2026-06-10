@@ -1,34 +1,35 @@
 # submissions/ — the leaderboard's source of truth
 
-Each `*.json` here is one tool's run of the 100-question suite. **The leaderboard
-([`../docs/LEADERBOARD.md`](../docs/LEADERBOARD.md)) is generated from these files by CI — nobody
-edits the leaderboard by hand.** To add or update a tool, add/modify a file here via a pull request
-(see [`../CONTRIBUTING.md`](../CONTRIBUTING.md)).
+One folder per benchmarked tool. **The leaderboard (`/leaderboard.svg`, `.json`, `.csv`) is generated
+from these folders by CI — nobody edits it by hand.** To add or update a tool, add/modify a folder
+here via a pull request (see [`../CONTRIBUTING.md`](../CONTRIBUTING.md)).
 
-## How a submission becomes a number (genuineness)
+```
+submissions/<tool>/
+  results.json   the tool's run of the 100-question suite (CI re-runs its SQL to score it)
+  meta.json      display info: { tool, adapter, repo, version, approach, submitted_by }
+  adapter.py     a snapshot of the adapter that produced the run (auditable + reproducible)
+```
 
-On every PR, `harness/score_submission.py` takes each question's `pred_sql` from your file,
-**re-executes it against a freshly-seeded gold database CI controls**, and recomputes EX@1, VES,
-Soft-F1, Set-Recall, errors, and timing from scratch. The number that lands on the leaderboard is
-the one CI derived — **you cannot fake accuracy by editing the JSON.** Only token counts are taken
-from your file (they require the actual model run); your committed adapter makes them re-runnable,
-and they're labeled self-reported.
+## How a folder becomes a number (genuineness)
 
-A submission is **rejected** (PR check fails) if it: is missing questions (not all 100), uses a
-model other than `openai/gpt-4o` (the same-model control), contains non-`SELECT` SQL, or claims an
-EX@1 its own SQL can't reproduce (anti-tamper).
+On every PR, `harness/score_submission.py` takes each question's `pred_sql` from `results.json` and
+**re-executes it against a freshly-seeded gold database CI controls**, recomputing EX@1, VES, Soft-F1,
+Set-Recall, errors, and timing from scratch. The number that lands on the leaderboard is the one CI
+derived — **you cannot fake accuracy by editing the JSON.** Only token counts are taken from your
+file (they require the actual model run); `adapter.py` makes them re-runnable, and they're labeled
+self-reported.
 
-## File format
+A submission is **rejected** (PR check fails) if it: is missing questions (not all 100), uses a model
+other than `openai/gpt-4o` (the same-model control), contains non-`SELECT` SQL, or claims an EX@1 its
+own SQL can't reproduce (anti-tamper).
 
-The easiest way to produce one is `make bench` + `harness/make_submission.py` (see CONTRIBUTING).
-The shape:
+## results.json format
+
+Produce it with `make bench` + `harness/make_submission.py` (see CONTRIBUTING). The shape:
 
 ```json
 {
-  "tool": "My Tool",                       // display name on the leaderboard
-  "adapter": "my-tool",                    // adapter module name in harness/adapters/
-  "repo": "https://github.com/me/my-tool", // optional
-  "submitted_by": "you",                   // optional
   "summary": { ... },                      // informational only — CI ignores it and recomputes
   "results": [
     {
@@ -44,6 +45,6 @@ The shape:
 }
 ```
 
-Only `results[].id` + `pred_sql` are strictly required for scoring; include `pred_tables` so
-Set-Recall is verified (not trusted), and the token fields so your token economy counts in the
-Grade. `make bench` records all of these for you.
+Only `results[].id` + `pred_sql` are strictly required; include `pred_tables` so Set-Recall is
+verified (not trusted), and the token fields so your token economy counts in the Grade. `make bench`
+records all of these for you.

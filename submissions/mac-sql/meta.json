@@ -1,0 +1,7 @@
+{
+  "tool": "MAC-SQL",
+  "adapter": "mac-sql",
+  "repo": "https://github.com/wbbeyourself/MAC-SQL",
+  "approach": "multi-agent",
+  "submitted_by": "heron (baseline)"
+}

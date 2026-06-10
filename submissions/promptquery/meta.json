@@ -1,0 +1,8 @@
+{
+  "tool": "PromptQuery",
+  "adapter": "promptquery",
+  "repo": "https://github.com/Cyberfilo/PromptQuery",
+  "approach": "retrieval",
+  "submitted_by": "heron (baseline)",
+  "version": "0.3.0"
+}

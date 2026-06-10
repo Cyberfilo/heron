@@ -1,0 +1,7 @@
+{
+  "tool": "DIN-SQL",
+  "adapter": "din-sql",
+  "repo": "https://github.com/MohammadrezaPourreza/DIN-SQL",
+  "approach": "decomposed",
+  "submitted_by": "heron (baseline)"
+}

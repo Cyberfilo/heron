@@ -33,6 +33,19 @@ REQUIRED_MODEL = "openai/gpt-4o"     # the same-model control; other models aren
 INFLATION_TOLERANCE = 2.0            # claimed EX may exceed verified by at most this many points
 
 
+def load_submission(path: str) -> dict:
+    """Accept either a submission folder (submissions/<tool>/ with results.json + meta.json)
+    or a single results JSON. Returns the merged submission dict score() expects."""
+    if os.path.isdir(path):
+        d = json.load(open(os.path.join(path, "results.json")))
+        meta = {}
+        mp = os.path.join(path, "meta.json")
+        if os.path.exists(mp):
+            meta = json.load(open(mp))
+        return {**meta, "summary": d.get("summary", {}), "results": d.get("results", [])}
+    return json.load(open(path))
+
+
 def score(submission: dict, conn) -> tuple[dict, list[str]]:
     """Re-execute the submission's SQL and recompute every metric. Returns
     (verified_summary, issues). `issues` non-empty => the submission should be rejected."""
@@ -131,13 +144,12 @@ def score(submission: dict, conn) -> tuple[dict, list[str]]:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("submission", help="path to submissions/<tool>.json")
+    ap.add_argument("submission", help="path to submissions/<tool>/ (or a results JSON)")
     ap.add_argument("--dsn", required=True)
     ap.add_argument("--out", help="write the verified result JSON here")
     args = ap.parse_args()
 
-    with open(args.submission) as f:
-        submission = json.load(f)
+    submission = load_submission(args.submission)
     with psycopg.connect(args.dsn) as conn:
         verified, issues = score(submission, conn)
 

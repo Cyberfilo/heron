@@ -1,0 +1,8 @@
+{
+  "tool": "Vanna",
+  "adapter": "vanna",
+  "repo": "https://github.com/vanna-ai/vanna",
+  "approach": "RAG",
+  "submitted_by": "heron (baseline)",
+  "version": "0.7.9"
+}

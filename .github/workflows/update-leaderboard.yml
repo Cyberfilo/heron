@@ -1,16 +1,16 @@
 name: update-leaderboard
 
-# After a submission (or harness/questions change) lands on main, regenerate docs/LEADERBOARD.md
-# from submissions/*.json by re-running every tool's SQL, and commit the result. The leaderboard
-# is therefore always a pure function of the committed submissions — never hand-edited. The bot
-# commits only docs/LEADERBOARD.md + submissions/leaderboard.json, which are NOT in the trigger
-# paths, so its own commit can't re-trigger this workflow.
+# After a submission (or harness/questions change) lands on main, regenerate the leaderboard
+# (leaderboard.json + .svg + .csv) from submissions/<tool>/ by re-running every tool's SQL, and
+# commit the result. The leaderboard is therefore always a pure function of the committed
+# submissions — never hand-edited. The bot commits only the root leaderboard.* files, which are NOT
+# in the trigger paths, so its own commit can't re-trigger this workflow.
 
 on:
   push:
     branches: [main]
     paths:
-      - 'submissions/*.json'
+      - 'submissions/**'
       - 'harness/**'
       - 'questions/**'
   workflow_dispatch:
@@ -53,14 +53,14 @@ jobs:
           make schema DSN="$DSN"
           make seed SCALE=small SEED=42 DSN="$DSN"
 
-      - name: Regenerate the leaderboard from submissions
+      - name: Regenerate leaderboard.json / .svg / .csv from submissions
         run: python harness/build_leaderboard.py --dsn "$DSN"
 
       - name: Commit if the leaderboard changed
         run: |
           git config user.name "heron-bot"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/LEADERBOARD.md submissions/leaderboard.json
+          git add leaderboard.json leaderboard.svg leaderboard.csv
           if git diff --staged --quiet; then
             echo "Leaderboard unchanged — nothing to commit."
           else
