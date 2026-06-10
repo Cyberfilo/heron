@@ -13,7 +13,42 @@ and **exact OpenAI-billed token counts** (no estimates). Full tool survey + inte
 > That's exactly what we want to isolate. Unfavorable results are kept on purpose — including that
 > heron's own namesake tool does **not** top the Grade.
 
-## Results — v1 (100 questions, gpt-4o, exact tokens + Grade)
+## Tool update — PromptQuery 0.3.0 (2026-06-10)
+
+PromptQuery shipped 0.3.0 (enum value lists + column comments in its schema prompt, an
+execution-guided repair round on database errors, stricter answer-shape prompt rules). Re-run under
+the **identical v1 conditions** (same 100 questions, gpt-4o, temp 0, single-state EX@1, `small`
+scale); every other tool's row is unchanged from v1. The harness adapter now drives the tool's
+repair stage (read-only, one round — same family as MAC-SQL's Refiner; older promptquery versions
+run unchanged). Results file: `results_prq_v031.json`.
+
+| Rank | Tool | Grade | EX@1 | VES | Soft-F1 | Set-Recall | ms/q | tok/q | $/100q | errors |
+|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 1 | **PromptQuery 0.3.0** (retrieval) | **67.0** | **72.0** | **62.4** | **73.9** | **99.0** | 2,464 | 4,689 | $1.21 | **0** |
+| 2 | **Vanna 0.7.9** (RAG) | **61.9** | 46.0 | 44.6 | 48.2 | 79.0 | 1,535 | **2,000** | **$0.53** | 18 |
+| 3 | PromptQuery 0.2.2 *(superseded)* | 59.0 | 58.0 | 52.0 | 60.2 | 98.0 | 2,265 | 4,257 | $1.11 | 7 |
+| 4 | raw-gpt-4o (full-schema dump) | 55.5 | 55.0 | 49.2 | 56.8 | n/a | **1,399** | 15,314 | $3.87 | 10 |
+| 5 | MAC-SQL (multi-agent) | 46.8 | 49.0 | 42.2 | 51.7 | 90.0 | 2,967 | 15,656 | $4.00 | 3 |
+| 6 | DIN-SQL (decomposed) | 46.5 | 52.0 | 45.5 | 54.9 | 90.0 | 5,124 | 16,343 | $4.21 | 6 |
+| 7 | LangChain (schema-dump) | 18.0 | 16.0 | 14.8 | 17.9 | n/a | 6,494 | **101,151** | **$25.36** | 46 |
+
+What changed, both directions:
+
+- **EX@1 58.0 → 72.0 and errors 7 → 0.** All six of 0.2.2's hard errors were invented enum values;
+  with the enum vocabulary in the prompt plus one repair round, the error count went to zero. The
+  per-bucket gains concentrate exactly where 0.2.2's misses did: single 58.6→82.8, lexical-gap
+  36.4→72.7, named 60.8→80.4, join 64.0→68.0.
+- **The Grade-vs-EX tension is resolved**: the most accurate tool and the highest-graded tool are
+  now the same one. Vanna keeps the best token-economy (2.0k tok/q vs 4.7k) and latency.
+- **Not everything improved.** multi-join dipped 58.3 → 50.0 (n=12) and analytical stays at 20.0 —
+  the window-function/composition ceiling is untouched. Question-level: 20 of 0.2.2's 42 misses
+  fixed, 6 new regressions (mostly column-choice flips on "list each X" questions under the new
+  minimal-columns rule, plus one case where preferring a status column over a timestamp picked the
+  wrong signal). Single-state EX@1 carries known false-positive noise; multi-state EX remains on
+  the roadmap.
+- **Cost of the gains:** +10% tokens (enum lists), +0.2 s/q (repair rounds on failing queries).
+
+## Results — v1 (100 questions, gpt-4o, exact tokens + Grade) — *PromptQuery row superseded by the 0.3.0 update above*
 
 All six tools run the **same 100 questions** on gpt-4o (temp 0). Ranked by **Grade** (0–100,
 [METHODOLOGY §7](METHODOLOGY.md)); EX@1 is the headline accuracy, VES is correctness-gated efficiency
