@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="746" height="322" viewBox="0 0 746 322" font-family="-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
-<rect width="746" height="322" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="746" height="288" viewBox="0 0 746 288" font-family="-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
+<rect width="746" height="288" fill="#ffffff"/>
 <text x="15" y="32" font-size="19" font-weight="700" fill="#111827">heron leaderboard <tspan font-weight="400" fill="#6b7280" font-size="13">· NL→SQL on 211 tables · 100 questions · same gpt-4o</tspan></text>
 <rect x="1" y="52" width="744" height="36" fill="#111827"/>
 <text x="23" y="75" font-size="12.5" font-weight="600" fill="#e5e7eb" text-anchor="middle">#</text>
@@ -15,9 +15,9 @@
 <text x="23" y="110" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">1</text>
 <text x="57" y="110" font-size="12.5" font-weight="700" fill="#111827" text-anchor="start">PromptQuery</text>
 <rect x="227" y="94" width="58" height="22" rx="5" fill="hsl(86,62%,42%)"/>
-<text x="256" y="110" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">68.9</text>
+<text x="256" y="110" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">68.7</text>
 <text x="336" y="110" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">72.0</text>
-<text x="408" y="110" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">72.1</text>
+<text x="408" y="110" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">72.0</text>
 <text x="491" y="110" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">99</text>
 <text x="581" y="110" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">4,689</text>
 <text x="659" y="110" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">$1.21</text>
@@ -25,10 +25,10 @@
 <rect x="1" y="122" width="744" height="34" fill="#ffffff"/>
 <text x="23" y="144" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">2</text>
 <text x="57" y="144" font-size="12.5" font-weight="600" fill="#111827" text-anchor="start">Vanna</text>
-<rect x="227" y="128" width="58" height="22" rx="5" fill="hsl(78,62%,42%)"/>
-<text x="256" y="144" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">62.4</text>
+<rect x="227" y="128" width="58" height="22" rx="5" fill="hsl(77,62%,42%)"/>
+<text x="256" y="144" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">61.9</text>
 <text x="336" y="144" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">46.0</text>
-<text x="408" y="144" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">46.6</text>
+<text x="408" y="144" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">46.4</text>
 <text x="491" y="144" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">79</text>
 <text x="581" y="144" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">2,000</text>
 <text x="659" y="144" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">$0.53</text>
@@ -37,9 +37,9 @@
 <text x="23" y="178" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">3</text>
 <text x="57" y="178" font-size="12.5" font-weight="600" fill="#111827" text-anchor="start">raw-gpt-4o</text>
 <rect x="227" y="162" width="58" height="22" rx="5" fill="hsl(71,62%,42%)"/>
-<text x="256" y="178" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">56.7</text>
+<text x="256" y="178" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">56.8</text>
 <text x="336" y="178" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">55.0</text>
-<text x="408" y="178" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">54.8</text>
+<text x="408" y="178" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">55.4</text>
 <text x="491" y="178" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">n/a</text>
 <text x="581" y="178" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">15,314</text>
 <text x="659" y="178" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">$3.87</text>
@@ -50,7 +50,7 @@
 <rect x="227" y="196" width="58" height="22" rx="5" fill="hsl(60,62%,42%)"/>
 <text x="256" y="212" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">48.2</text>
 <text x="336" y="212" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">49.0</text>
-<text x="408" y="212" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">49.2</text>
+<text x="408" y="212" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">49.0</text>
 <text x="491" y="212" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">90</text>
 <text x="581" y="212" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">15,656</text>
 <text x="659" y="212" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">$4.00</text>
@@ -59,23 +59,12 @@
 <text x="23" y="246" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">5</text>
 <text x="57" y="246" font-size="12.5" font-weight="600" fill="#111827" text-anchor="start">DIN-SQL</text>
 <rect x="227" y="230" width="58" height="22" rx="5" fill="hsl(60,62%,42%)"/>
-<text x="256" y="246" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">48.1</text>
+<text x="256" y="246" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">47.9</text>
 <text x="336" y="246" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">52.0</text>
-<text x="408" y="246" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">53.5</text>
+<text x="408" y="246" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">52.8</text>
 <text x="491" y="246" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">90</text>
 <text x="581" y="246" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">16,343</text>
 <text x="659" y="246" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">$4.21</text>
 <text x="720" y="246" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">6</text>
-<rect x="1" y="258" width="744" height="34" fill="#ffffff"/>
-<text x="23" y="280" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">6</text>
-<text x="57" y="280" font-size="12.5" font-weight="600" fill="#111827" text-anchor="start">LangChain</text>
-<rect x="227" y="264" width="58" height="22" rx="5" fill="hsl(23,62%,42%)"/>
-<text x="256" y="280" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">18.2</text>
-<text x="336" y="280" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">16.0</text>
-<text x="408" y="280" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">16.0</text>
-<text x="491" y="280" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">n/a</text>
-<text x="581" y="280" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">101,151</text>
-<text x="659" y="280" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">$25.36</text>
-<text x="720" y="280" font-size="12.5" font-weight="400" fill="#374151" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace">46</text>
-<text x="15" y="317" font-size="10.5" fill="#9ca3af">Grade = .45·EX + .20·VES + .10·reliability + .15·tokens + .10·latency · EX/VES/Set-Recall recomputed by CI from each tool’s SQL · auto-generated</text>
+<text x="15" y="283" font-size="10.5" fill="#9ca3af">Grade = .45·EX + .20·VES + .10·reliability + .15·tokens + .10·latency · EX/VES/Set-Recall recomputed by CI from each tool’s SQL · auto-generated</text>
 </svg>
