@@ -1,0 +1,37 @@
+# local Postgres cluster used for dev/verification (never committed)
+.pgdata/
+.pgsock/
+*.log
+logfile
+data/*.sha256
+
+# generated data + dumps (shipped as release assets, not in git)
+data/*.dump
+data/*.sql.gz
+data/*.csv
+
+# python
+__pycache__/
+*.pyc
+.venv/
+seed/.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# local run artifacts (session-specific, not benchmark evidence)
+api_costs.tsv
+
+# os
+.DS_Store
+
+# === Claude Code / internal (managed by PromptQuery Root governance) ===
+# AI scratch + governance — keep repos authored by Filippo, not Claude
+.claude/
+CLAUDE.md
+tmp/
+.planning/
+PromptQuery_vault/
+*.local.json
+.env
+.env.*

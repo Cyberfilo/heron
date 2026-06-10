@@ -1,0 +1,25 @@
+heron — a production-scale NL→SQL benchmark
+Copyright 2026 Filippo Menghi
+
+CODE LICENSE: Apache-2.0 (proposed; see DECISIONS.md §D5 / docs/HOSTING-AND-LICENSING.md)
+DATA + QUESTIONS LICENSE: CC-BY-4.0 (proposed). All data is SYNTHETIC and generated
+locally by seed/generate.py — no third-party dataset is redistributed.
+
+ATTRIBUTIONS / LINEAGE (this benchmark deliberately builds on recognized prior art):
+
+- Result comparator (harness/comparator.py) reimplements the semantics of Spider's
+  `test-suite-sql-eval` `result_eq` / `eval_exec_match`
+  (https://github.com/taoyds/test-suite-sql-eval, Apache-2.0). See docs/REUSE.md.
+
+- Metric design follows the published lineage: execution accuracy (Spider/BIRD),
+  table-retrieval recall/F1 (BEAVER), and set-recall@k (RASL/LinkAlign, 2025).
+  See docs/METHODOLOGY.md and docs/RELATED-WORK.md for citations.
+
+- The schema mirrors the SHAPE of recognized open-source production schemas (Saleor,
+  Medusa, Kill Bill, Stripe data model, Chatwoot, Snowplow, Keycloak, ...). No GPL/AGPL
+  DDL is copied; only conceptual structure is echoed. Per-domain provenance and licenses:
+  docs/SCHEMA-PROVENANCE.md.
+
+- Data generation uses Mimesis (MIT) for string pools and NumPy for all randomness.
+  TPC-H/TPC-DS skew ideas are re-implemented, not shipped (TPC tools are under a
+  restrictive EULA — never bundled). See seed/DATA-REALISM.md.

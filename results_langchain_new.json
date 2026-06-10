@@ -1,0 +1,692 @@
+{
+  "summary": {
+    "adapter": "langchain",
+    "model": "openai/gpt-4o",
+    "n": 35,
+    "ex_at_1": 11.4,
+    "set_recall": null,
+    "ex_by_shape": {
+      "single": 10.0,
+      "join": 12.5,
+      "multi-join": 20.0,
+      "analytical": 0.0
+    },
+    "ex_by_retrieval": {
+      "named": 12.5,
+      "1-hop": 10.0,
+      "2-hop+": 25.0,
+      "lexical-gap": 0.0
+    },
+    "avg_gen_ms": 5982.8,
+    "avg_exec_ms": 135.9,
+    "avg_total_ms": 6118.7,
+    "avg_gold_exec_ms": 25.6,
+    "avg_tokens": null,
+    "total_tokens": null,
+    "token_coverage": "0/35"
+  },
+  "results": [
+    {
+      "id": "q041",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "value-grounding"
+      ],
+      "gen_ms": 9383.0,
+      "exec_ms": 1.8,
+      "gold_exec_ms": 10.2,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SQLQuery: \nSELECT COUNT(*) AS \"bounced_sessions_count\"\nFROM \"analytics\".\"web_sessions\"\nWHERE \"is_bounce\" = true",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q042",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "value-grounding"
+      ],
+      "gen_ms": 3238.5,
+      "exec_ms": 1.4,
+      "gold_exec_ms": 2.4,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SELECT COUNT(*) AS \"active_coupons_count\"\nFROM coupons\nWHERE \"status\" = 'active'",
+      "error": null
+    },
+    {
+      "id": "q043",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "value-grounding",
+        "aggregate"
+      ],
+      "gen_ms": 2553.1,
+      "exec_ms": 1.3,
+      "gold_exec_ms": 6.7,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SELECT SUM(\"amount\") AS total_successful_refunds\nFROM \"payment_refunds\"\nWHERE \"status\" = 'successful'",
+      "error": "invalid input value for enum refund_status: \"successful\""
+    },
+    {
+      "id": "q044",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "value-grounding"
+      ],
+      "gen_ms": 2449.6,
+      "exec_ms": 1.2,
+      "gold_exec_ms": 7.6,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SQLQuery: \nSELECT COUNT(*) \nFROM audit.audit_log \nWHERE \"action\" = 'delete'",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q045",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "aggregate"
+      ],
+      "gen_ms": 2345.8,
+      "exec_ms": 2.5,
+      "gold_exec_ms": 5.6,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SQLQuery: \nSELECT AVG(\"score\") AS average_csat_score\nFROM csat_responses",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q046",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "value-grounding"
+      ],
+      "gen_ms": 2450.1,
+      "exec_ms": 1.1,
+      "gold_exec_ms": 7.7,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SQLQuery: \nSELECT COUNT(*) \nFROM opportunities \nWHERE \"is_won\" = true",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q047",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "lexical-gap",
+      "tags": [
+        "lexical-gap",
+        "value-grounding"
+      ],
+      "gen_ms": 6833.8,
+      "exec_ms": 1.3,
+      "gold_exec_ms": 7.6,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SQLQuery: \nSELECT COUNT(*) \nFROM \"subscriptions\" \nWHERE \"status\" = 'canceled'",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q048",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "lexical-gap",
+      "tags": [
+        "lexical-gap",
+        "value-grounding"
+      ],
+      "gen_ms": 3048.8,
+      "exec_ms": 33.2,
+      "gold_exec_ms": 7.0,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SELECT COUNT(*) AS \"sent_count\"\nFROM \"campaign_messages\"\nWHERE \"sent_at\" IS NOT NULL",
+      "error": null
+    },
+    {
+      "id": "q049",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "lexical-gap",
+      "tags": [
+        "lexical-gap",
+        "value-grounding"
+      ],
+      "gen_ms": 2851.7,
+      "exec_ms": 1.3,
+      "gold_exec_ms": 15.7,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SQLQuery: \nSELECT COUNT(*) AS \"goods_out_count\"\nFROM \"stock_movements\"\nWHERE \"kind\" = 'goods_out'",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q050",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "lexical-gap",
+      "tags": [
+        "lexical-gap",
+        "value-grounding"
+      ],
+      "gen_ms": 2752.6,
+      "exec_ms": 1.4,
+      "gold_exec_ms": 6.1,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SELECT COUNT(*) AS \"converted_leads_count\"\nFROM \"leads\"\nWHERE \"converted_account_id\" IS NOT NULL OR \"converted_contact_id\" IS NOT NULL",
+      "error": null
+    },
+    {
+      "id": "q051",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "lexical-gap",
+      "tags": [
+        "lexical-gap",
+        "value-grounding"
+      ],
+      "gen_ms": 2269.6,
+      "exec_ms": 20.6,
+      "gold_exec_ms": 23.3,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SELECT COUNT(*) AS \"failed_webhook_callbacks\"\nFROM \"webhook_deliveries\"\nWHERE \"status\" != 'success'",
+      "error": null
+    },
+    {
+      "id": "q052",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "group-by"
+      ],
+      "gen_ms": 2492.0,
+      "exec_ms": 1.2,
+      "gold_exec_ms": 19.6,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SQLQuery: \nSELECT \"status\", COUNT(*) \nFROM comms.notifications \nGROUP BY \"status\" \nLIMIT 5",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q053",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "group-by"
+      ],
+      "gen_ms": 3570.9,
+      "exec_ms": 1.3,
+      "gold_exec_ms": 11.2,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SQLQuery: \nSELECT \"action\", COUNT(*) AS \"count\"\nFROM \"audit_log\"\nGROUP BY \"action\"\nORDER BY \"count\" DESC\nLIMIT 5",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q054",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "time-bucket",
+        "group-by"
+      ],
+      "gen_ms": 7217.6,
+      "exec_ms": 1.2,
+      "gold_exec_ms": 141.2,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SQLQuery: \nSELECT \n    DATE_TRUNC('month', \"occurred_at\") AS \"month\", \n    COUNT(*) AS \"event_count\"\nFROM \n    analytics.events\nGROUP BY \n    DATE_TRUNC('month', \"occurred_at\")\nORDER BY \n    \"month\"\nLIMIT 5",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q055",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "group-by"
+      ],
+      "gen_ms": 7747.3,
+      "exec_ms": 1.2,
+      "gold_exec_ms": 28.5,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SQLQuery: \nSELECT \"status\", COUNT(*) AS \"failed_count\"\nFROM \"job_runs\"\nWHERE \"status\" = 'failed'\nGROUP BY \"status\"\nLIMIT 5",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q056",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "ratio",
+        "value-grounding"
+      ],
+      "gen_ms": 7649.5,
+      "exec_ms": 1.7,
+      "gold_exec_ms": 27.6,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SQLQuery: \nSELECT \n    COUNT(*) FILTER (WHERE \"bounced_at\" IS NOT NULL) AS bounced_count,\n    COUNT(*) AS total_count\nFROM campaign_messages",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q057",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "group-by"
+      ],
+      "gen_ms": 7002.6,
+      "exec_ms": 20.5,
+      "gold_exec_ms": 26.2,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SELECT \"currency_code\", SUM(\"total\") AS \"total_invoiced_amount\"\nFROM \"invoices\"\nGROUP BY \"currency_code\"\nLIMIT 5",
+      "error": null
+    },
+    {
+      "id": "q058",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "group-by",
+        "tenant-aware",
+        "value-grounding"
+      ],
+      "gen_ms": 8108.8,
+      "exec_ms": 5.4,
+      "gold_exec_ms": 2.8,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SELECT \"tenant_id\", COUNT(*) AS \"open_opportunities_count\"\nFROM \"opportunities\"\nWHERE \"is_closed\" = false\nGROUP BY \"tenant_id\"\nLIMIT 5",
+      "error": null
+    },
+    {
+      "id": "q059",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "join"
+      ],
+      "gen_ms": 7149.2,
+      "exec_ms": 1.3,
+      "gold_exec_ms": 69.1,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SQLQuery: \nSELECT \n    \"n\".\"title\", \n    \"u\".\"email\"\nFROM \n    \"notifications\" AS \"n\"\nJOIN \n    \"users\" AS \"u\" ON \"n\".\"user_id\" = \"u\".\"id\"\nLIMIT 5",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q060",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "join"
+      ],
+      "gen_ms": 7956.4,
+      "exec_ms": 1.0,
+      "gold_exec_ms": 11.6,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SQLQuery: \nSELECT \n    \"opportunities\".\"name\" AS \"opportunity_name\", \n    \"pipelines\".\"name\" AS \"pipeline_name\"\nFROM \n    \"opportunities\"\nJOIN \n    \"pipelines\" ON \"opportunities\".\"pipeline_id\" = \"pipelines\".\"id\"\nLIMIT 5",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q061",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "join",
+        "value-grounding"
+      ],
+      "gen_ms": 8611.6,
+      "exec_ms": 1.0,
+      "gold_exec_ms": 36.0,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SQLQuery: \nSELECT COUNT(\"payment_refunds\".\"id\") \nFROM \"payment_refunds\" \nJOIN \"payments\" ON \"payment_refunds\".\"payment_id\" = \"payments\".\"id\" \nWHERE \"payments\".\"status\" = 'captured'",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q062",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "anti-join"
+      ],
+      "gen_ms": 6023.1,
+      "exec_ms": 2.1,
+      "gold_exec_ms": 13.0,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SELECT \n    \"c\".\"id\", \n    \"c\".\"code\", \n    \"c\".\"status\"\nFROM \n    \"coupons\" AS \"c\"\nLEFT JOIN \n    \"coupon_redemptions\" AS \"cr\" ON \"c\".\"id\" = \"cr\".\"coupon_id\"\nWHERE \n    \"cr\".\"id\" IS NULL\nLIMIT 5",
+      "error": null
+    },
+    {
+      "id": "q063",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "join",
+        "group-by"
+      ],
+      "gen_ms": 7897.2,
+      "exec_ms": 6.3,
+      "gold_exec_ms": 4.3,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SELECT \"c\".\"code\", SUM(\"cr\".\"discount_amount\") AS \"total_discount\"\nFROM \"coupon_redemptions\" AS \"cr\"\nJOIN \"coupons\" AS \"c\" ON \"cr\".\"coupon_id\" = \"c\".\"id\"\nGROUP BY \"c\".\"code\"\nLIMIT 5",
+      "error": null
+    },
+    {
+      "id": "q064",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "group-by",
+        "having"
+      ],
+      "gen_ms": 7857.5,
+      "exec_ms": 3.2,
+      "gold_exec_ms": 1.9,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SELECT \n    \"rated_agent_id\", \n    AVG(\"score\") AS average_score\nFROM \n    \"csat_responses\"\nGROUP BY \n    \"rated_agent_id\"\nHAVING \n    AVG(\"score\") < 3\nLIMIT 5",
+      "error": null
+    },
+    {
+      "id": "q065",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "group-by",
+        "having"
+      ],
+      "gen_ms": 7499.1,
+      "exec_ms": 41.3,
+      "gold_exec_ms": 37.6,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SELECT \n    \"c\".\"name\" AS \"campaign_name\", \n    COUNT(\"cm\".\"id\") AS \"message_count\"\nFROM \n    \"campaign_messages\" AS \"cm\"\nJOIN \n    \"campaigns\" AS \"c\" ON \"cm\".\"campaign_id\" = \"c\".\"id\"\nGROUP BY \n    \"c\".\"name\"\nHAVING \n    COUNT(\"cm\".\"id\") > 100\nLIMIT 5",
+      "error": null
+    },
+    {
+      "id": "q066",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "analytical",
+      "retrieval": "1-hop",
+      "tags": [
+        "window",
+        "order-by",
+        "value-grounding"
+      ],
+      "gen_ms": 7845.6,
+      "exec_ms": 0.8,
+      "gold_exec_ms": 2.1,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SQLQuery: \nSELECT \n    \"p\".\"name\", \n    COUNT(\"o\".\"id\") AS \"won_opportunities_count\"\nFROM \n    \"pipelines\" AS \"p\"\nJOIN \n    \"opportunities\" AS \"o\" ON \"p\".\"id\" = \"o\".\"pipeline_id\"\nWHERE \n    \"o\".\"is_won\" = TRUE\nGROUP BY \n    \"p\".\"name\"\nORDER BY \n    \"won_opportunities_count\" DESC\nLIMIT 5",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q067",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "analytical",
+      "retrieval": "named",
+      "tags": [
+        "window",
+        "cte",
+        "time-bucket",
+        "order-by",
+        "value-grounding"
+      ],
+      "gen_ms": 8367.9,
+      "exec_ms": 2.3,
+      "gold_exec_ms": 64.3,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SELECT \n    DATE_TRUNC('month', \"occurred_at\") AS \"month\",\n    SUM(\"amount\") OVER (ORDER BY DATE_TRUNC('month', \"occurred_at\")) AS \"running_total\"\nFROM \n    \"ledger_entries\"\nWHERE \n    \"direction\" = 'debit'\nGROUP BY \n    DATE_TRUNC('month', \"occurred_at\")\nORDER BY \n    \"month\"\nLIMIT 5",
+      "error": "column \"ledger_entries.amount\" must appear in the GROUP BY clause or be used in an aggregate function"
+    },
+    {
+      "id": "q068",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "group-by",
+        "order-by",
+        "limit"
+      ],
+      "gen_ms": 6409.6,
+      "exec_ms": 30.9,
+      "gold_exec_ms": 31.5,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SELECT \"event_name\", COUNT(*) AS \"event_count\"\nFROM analytics.events\nGROUP BY \"event_name\"\nORDER BY \"event_count\" DESC\nLIMIT 5",
+      "error": null
+    },
+    {
+      "id": "q069",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "join",
+        "group-by"
+      ],
+      "gen_ms": 7644.1,
+      "exec_ms": 3.5,
+      "gold_exec_ms": 4.9,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SELECT \n    sa.\"display_name\", \n    AVG(cr.\"score\") AS average_csat_score\nFROM \n    support_agents sa\nJOIN \n    csat_responses cr ON sa.\"id\" = cr.\"rated_agent_id\"\nGROUP BY \n    sa.\"display_name\"\nLIMIT 5",
+      "error": null
+    },
+    {
+      "id": "q070",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "multi-join",
+      "retrieval": "2-hop+",
+      "tags": [
+        "multi-join",
+        "group-by"
+      ],
+      "gen_ms": 7223.4,
+      "exec_ms": 1.6,
+      "gold_exec_ms": 50.3,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SQLQuery: \nSELECT \n    \"w\".\"name\" AS \"warehouse_name\", \n    COUNT(\"sm\".\"id\") AS \"stock_movements_count\"\nFROM \n    \"stock_movements\" AS \"sm\"\nJOIN \n    \"stock_locations\" AS \"sl\" ON \"sm\".\"stock_location_id\" = \"sl\".\"id\"\nJOIN \n    \"warehouses\" AS \"w\" ON \"sl\".\"warehouse_id\" = \"w\".\"id\"\nGROUP BY \n    \"w\".\"name\"\nLIMIT 5",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q071",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "multi-join",
+      "retrieval": "1-hop",
+      "tags": [
+        "multi-join",
+        "anti-join",
+        "distinct"
+      ],
+      "gen_ms": 11069.0,
+      "exec_ms": 4487.8,
+      "gold_exec_ms": 102.0,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SELECT DISTINCT \"cm\".\"recipient_email\"\nFROM \"marketing\".\"campaign_messages\" AS \"cm\"\nLEFT JOIN \"orders\" AS \"o\" ON \"cm\".\"user_id\" = \"o\".\"user_id\"\nWHERE \"cm\".\"opened_at\" IS NOT NULL\n  AND \"o\".\"id\" IS NULL\nLIMIT 5",
+      "error": null
+    },
+    {
+      "id": "q072",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "multi-join",
+      "retrieval": "2-hop+",
+      "tags": [
+        "multi-join",
+        "group-by",
+        "value-grounding"
+      ],
+      "gen_ms": 2752.3,
+      "exec_ms": 12.9,
+      "gold_exec_ms": 8.0,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SELECT \n    \"plans\".\"code\" AS \"plan_code\", \n    SUM(\"invoices\".\"total\") AS \"total_invoiced_amount\"\nFROM \n    \"invoices\"\nJOIN \n    \"subscriptions\" ON \"invoices\".\"subscription_id\" = \"subscriptions\".\"id\"\nJOIN \n    \"plans\" ON \"subscriptions\".\"plan_id\" = \"plans\".\"id\"\nWHERE \n    \"invoices\".\"status\" = 'paid'\nGROUP BY \n    \"plans\".\"code\"\nLIMIT 5",
+      "error": null
+    },
+    {
+      "id": "q073",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "multi-join",
+      "retrieval": "2-hop+",
+      "tags": [
+        "multi-join",
+        "group-by",
+        "value-grounding"
+      ],
+      "gen_ms": 4661.1,
+      "exec_ms": 30.4,
+      "gold_exec_ms": 35.2,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SELECT \n    \"countries\".\"name\" AS \"country_name\",\n    SUM(\"returns\".\"refund_total\") AS \"total_refunded_amount\"\nFROM \n    \"returns\"\nJOIN \n    \"orders\" ON \"returns\".\"order_id\" = \"orders\".\"id\"\nJOIN \n    \"addresses\" ON \"orders\".\"shipping_address_id\" = \"addresses\".\"id\"\nJOIN \n    \"countries\" ON \"addresses\".\"country_id\" = \"countries\".\"id\"\nGROUP BY \n    \"countries\".\"name\"\nLIMIT 5",
+      "error": null
+    },
+    {
+      "id": "q074",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "tenant-isolation"
+      ],
+      "gen_ms": 7428.3,
+      "exec_ms": 28.7,
+      "gold_exec_ms": 18.7,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SELECT COUNT(*) AS \"count\"\nFROM \"notifications\" n\nJOIN \"users\" u ON n.\"user_id\" = u.\"id\"\nWHERE n.\"tenant_id\" = u.\"tenant_id\"",
+      "error": null
+    },
+    {
+      "id": "q075",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "multi-join",
+      "retrieval": "2-hop+",
+      "tags": [
+        "multi-join",
+        "value-grounding",
+        "distinct"
+      ],
+      "gen_ms": 9037.0,
+      "exec_ms": 2.2,
+      "gold_exec_ms": 46.9,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "tokens": null,
+      "pred_sql": "SELECT DISTINCT \"u\".\"email\"\nFROM \"subscriptions\" AS \"s\"\nJOIN \"plans\" AS \"p\" ON \"s\".\"plan_id\" = \"p\".\"id\"\nJOIN \"users\" AS \"u\" ON \"s\".\"user_id\" = \"u\".\"id\"\nJOIN \"tickets\" AS \"t\" ON \"t\".\"requester_user_id\" = \"u\".\"id\"\nWHERE \"s\".\"status\" = 'active'\n  AND \"p\".\"name\" = 'Enterprise'\n  AND \"t\".\"id\" IS NOT NULL\nLIMIT 5",
+      "error": null
+    }
+  ]
+}

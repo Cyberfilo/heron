@@ -1,0 +1,32 @@
+# Canonical reproducible Postgres for heron. `make up` starts this.
+# Tuned for fast bulk loading of millions of rows, not production durability.
+services:
+  db:
+    image: postgres:16
+    container_name: heron-db
+    environment:
+      POSTGRES_USER: heron
+      POSTGRES_PASSWORD: heron
+      POSTGRES_DB: heron
+    ports:
+      - "55432:5432"          # host 55432 -> container 5432 (avoids a default local PG on 5432)
+    volumes:
+      - heron_pg:/var/lib/postgresql/data
+    # Bulk-load-friendly settings. synchronous_commit=off + large WAL = faster COPY;
+    # safe here because the DB is disposable and regenerated from a deterministic seed.
+    command: >
+      postgres
+      -c shared_buffers=512MB
+      -c work_mem=64MB
+      -c maintenance_work_mem=512MB
+      -c max_wal_size=8GB
+      -c checkpoint_timeout=30min
+      -c synchronous_commit=off
+      -c full_page_writes=off
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U heron -d heron"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+volumes:
+  heron_pg:

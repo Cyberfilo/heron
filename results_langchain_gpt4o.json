@@ -1,0 +1,562 @@
+{
+  "summary": {
+    "adapter": "langchain",
+    "model": "openai/gpt-4o",
+    "n": 40,
+    "ex_at_1": 17.5,
+    "set_recall": null,
+    "ex_by_shape": {
+      "single": 20.8,
+      "join": 18.2,
+      "multi-join": 0.0,
+      "analytical": 0.0
+    },
+    "ex_by_retrieval": {
+      "named": 18.2,
+      "1-hop": 16.7,
+      "2-hop+": 0.0,
+      "lexical-gap": 33.3
+    }
+  },
+  "results": [
+    {
+      "id": "q001",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "count"
+      ],
+      "elapsed": 4.535,
+      "pred_sql": "SQLQuery: SELECT COUNT(*) FROM \"users\"",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q002",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "value-grounding"
+      ],
+      "elapsed": 2.344,
+      "pred_sql": "SQLQuery: \nSELECT COUNT(*) \nFROM \"products\" \nWHERE \"is_visible\" = true AND \"status\" = 'active'",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q003",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "lookup"
+      ],
+      "elapsed": 2.478,
+      "pred_sql": "SQLQuery: SELECT \"code\" FROM currencies LIMIT 5",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q004",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "value-grounding"
+      ],
+      "elapsed": 2.623,
+      "pred_sql": "SQLQuery: \nSELECT COUNT(DISTINCT \"order_id\") \nFROM \"returns\" \nWHERE \"refunded_at\" IS NOT NULL",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q005",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "aggregate"
+      ],
+      "elapsed": 2.859,
+      "pred_sql": "SELECT AVG(\"grand_total\") AS average_grand_total\nFROM \"orders\"",
+      "error": null
+    },
+    {
+      "id": "q006",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "value-grounding"
+      ],
+      "elapsed": 2.599,
+      "pred_sql": "SQLQuery: \nSELECT COUNT(*) \nFROM support.tickets \nWHERE \"priority\" = 'urgent'",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q007",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "distinct"
+      ],
+      "elapsed": 2.304,
+      "pred_sql": "SQLQuery: \nSELECT DISTINCT \"status\" \nFROM \"orders\" \nLIMIT 5",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q008",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "value-grounding",
+        "aggregate"
+      ],
+      "elapsed": 2.976,
+      "pred_sql": "SQLQuery: \nSELECT SUM(\"amount\") \nFROM \"payments\" \nWHERE \"status\" = 'captured'",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q009",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "value-grounding"
+      ],
+      "elapsed": 2.875,
+      "pred_sql": "SELECT COUNT(*) AS \"archived_products_count\"\nFROM \"products\"\nWHERE \"deleted_at\" IS NOT NULL",
+      "error": null
+    },
+    {
+      "id": "q010",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "value-grounding"
+      ],
+      "elapsed": 2.731,
+      "pred_sql": "SQLQuery: \nSELECT COUNT(*) \nFROM subscriptions \nWHERE \"status\" = 'active'",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q011",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "value-grounding"
+      ],
+      "elapsed": 2.674,
+      "pred_sql": "SELECT COUNT(*) AS \"country_count\"\nFROM \"countries\"\nWHERE \"continent\" = 'Europe'",
+      "error": null
+    },
+    {
+      "id": "q012",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "aggregate"
+      ],
+      "elapsed": 4.526,
+      "pred_sql": "SQLQuery: \nSELECT AVG(\"employee_count\") AS average_employee_count\nFROM accounts",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q013",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "lexical-gap",
+      "tags": [
+        "lexical-gap"
+      ],
+      "elapsed": 8.329,
+      "pred_sql": "SELECT COUNT(*) AS \"sign_ups_count\" FROM \"users\"",
+      "error": null
+    },
+    {
+      "id": "q014",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "lexical-gap",
+      "tags": [
+        "lexical-gap",
+        "value-grounding"
+      ],
+      "elapsed": 6.691,
+      "pred_sql": "SQLQuery: \nSELECT COUNT(*) \nFROM support.tickets \nWHERE \"status\" != 'closed'",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q015",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "lexical-gap",
+      "tags": [
+        "lexical-gap",
+        "value-grounding"
+      ],
+      "elapsed": 7.519,
+      "pred_sql": "SELECT COUNT(*) AS \"overdue_invoices_count\"\nFROM \"invoices\"\nWHERE \"due_at\" < CURRENT_DATE AND \"status\" != 'paid'",
+      "error": null
+    },
+    {
+      "id": "q016",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "join"
+      ],
+      "elapsed": 7.969,
+      "pred_sql": "SQLQuery: \nSELECT p.\"name\" AS product_name, b.\"name\" AS brand_name\nFROM products p\nLEFT JOIN brands b ON p.\"brand_id\" = b.\"id\"\nLIMIT 5",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q017",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "join"
+      ],
+      "elapsed": 9.275,
+      "pred_sql": "SQLQuery: \nSELECT \n    \"product_reviews\".\"title\" AS \"Review Title\", \n    \"products\".\"name\" AS \"Product Name\"\nFROM \n    \"product_reviews\"\nJOIN \n    \"products\" ON \"product_reviews\".\"product_id\" = \"products\".\"id\"\nLIMIT 5",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q018",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "join"
+      ],
+      "elapsed": 6.094,
+      "pred_sql": "SQLQuery: \nSELECT \n    \"subscriptions\".\"id\" AS \"subscription_id\", \n    \"plans\".\"name\" AS \"plan_name\"\nFROM \n    \"subscriptions\"\nJOIN \n    \"plans\" ON \"subscriptions\".\"plan_id\" = \"plans\".\"id\"\nLIMIT 5",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q019",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "join"
+      ],
+      "elapsed": 7.168,
+      "pred_sql": "SQLQuery: \nSELECT \"orders\".\"order_number\", \"users\".\"email\"\nFROM \"orders\"\nJOIN \"users\" ON \"orders\".\"user_id\" = \"users\".\"id\"\nLIMIT 5",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q020",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "anti-join"
+      ],
+      "elapsed": 7.58,
+      "pred_sql": "SELECT \n    \"products\".\"name\"\nFROM \n    \"products\"\nLEFT JOIN \n    \"product_reviews\" ON \"products\".\"id\" = \"product_reviews\".\"product_id\"\nWHERE \n    \"product_reviews\".\"id\" IS NULL\nLIMIT 5",
+      "error": null
+    },
+    {
+      "id": "q021",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "value-grounding",
+        "join"
+      ],
+      "elapsed": 7.638,
+      "pred_sql": "SELECT COUNT(*) AS active_subscribers\nFROM subscriptions\nJOIN plans ON subscriptions.plan_id = plans.id\nWHERE plans.name = 'pro' AND subscriptions.status = 'active'",
+      "error": null
+    },
+    {
+      "id": "q022",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "group-by"
+      ],
+      "elapsed": 8.378,
+      "pred_sql": "SQLQuery: \nSELECT \"currency_code\", SUM(\"grand_total\") AS total_revenue\nFROM \"orders\"\nGROUP BY \"currency_code\"\nLIMIT 5",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q023",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "group-by",
+        "tenant-aware"
+      ],
+      "elapsed": 6.43,
+      "pred_sql": "SQLQuery: \nSELECT \"tenant_id\", COUNT(\"id\") AS \"order_count\"\nFROM \"orders\"\nGROUP BY \"tenant_id\"\nLIMIT 5",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q024",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "group-by",
+        "having"
+      ],
+      "elapsed": 9.484,
+      "pred_sql": "SELECT \n    \"p\".\"name\", \n    AVG(\"pr\".\"rating\") AS \"average_rating\"\nFROM \n    \"product_reviews\" AS \"pr\"\nJOIN \n    \"products\" AS \"p\" ON \"pr\".\"product_id\" = \"p\".\"id\"\nGROUP BY \n    \"p\".\"name\"\nHAVING \n    AVG(\"pr\".\"rating\") > 4\nLIMIT 5",
+      "error": null
+    },
+    {
+      "id": "q025",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "group-by",
+        "having"
+      ],
+      "elapsed": 5.783,
+      "pred_sql": "SELECT \"user_id\", COUNT(\"id\") AS \"order_count\"\nFROM \"orders\"\nGROUP BY \"user_id\"\nHAVING COUNT(\"id\") > 3\nLIMIT 5",
+      "error": null
+    },
+    {
+      "id": "q026",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "multi-join",
+      "retrieval": "2-hop+",
+      "tags": [
+        "multi-join",
+        "group-by"
+      ],
+      "elapsed": 7.842,
+      "pred_sql": "SELECT \n    \"addresses\".\"country_id\",\n    SUM(\"orders\".\"grand_total\") AS total_revenue\nFROM \n    \"orders\"\nJOIN \n    \"addresses\" ON \"orders\".\"shipping_address_id\" = \"addresses\".\"id\"\nGROUP BY \n    \"addresses\".\"country_id\"\nLIMIT 5",
+      "error": null
+    },
+    {
+      "id": "q027",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "multi-join",
+      "retrieval": "1-hop",
+      "tags": [
+        "group-by",
+        "order-by",
+        "limit"
+      ],
+      "elapsed": 7.223,
+      "pred_sql": "SQLQuery: \nSELECT \"p\".\"name\", SUM(\"oi\".\"quantity\") AS \"total_units_sold\"\nFROM \"order_items\" AS \"oi\"\nJOIN \"products\" AS \"p\" ON \"oi\".\"product_variant_id\" = \"p\".\"id\"\nGROUP BY \"p\".\"name\"\nORDER BY \"total_units_sold\" DESC\nLIMIT 5",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q028",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "multi-join",
+      "retrieval": "1-hop",
+      "tags": [
+        "multi-join",
+        "distinct"
+      ],
+      "elapsed": 7.747,
+      "pred_sql": "SELECT DISTINCT \"users\".\"email\"\nFROM \"users\"\nJOIN \"payment_refunds\" ON \"users\".\"id\" = \"payment_refunds\".\"payment_id\"\nLIMIT 5",
+      "error": null
+    },
+    {
+      "id": "q029",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "2-hop+",
+      "tags": [
+        "value-grounding",
+        "distinct"
+      ],
+      "elapsed": 9.66,
+      "pred_sql": "SELECT COUNT(DISTINCT \"orders\".\"user_id\") AS \"user_count\"\nFROM \"orders\"\nLEFT JOIN \"addresses\" AS \"billing_address\" ON \"orders\".\"billing_address_id\" = \"billing_address\".\"id\"\nLEFT JOIN \"addresses\" AS \"shipping_address\" ON \"orders\".\"shipping_address_id\" = \"shipping_address\".\"id\"\nLEFT JOIN \"countries\" AS \"billing_country\" ON \"billing_address\".\"country_id\" = \"billing_country\".\"id\"\nLEFT JOIN \"countries\" AS \"shipping_country\" ON \"shipping_address\".\"country_id\" = \"shipping_country\".\"id\"\nWHERE \"billing_country\".\"name\" = 'Germany' OR \"shipping_country\".\"name\" = 'Germany'",
+      "error": null
+    },
+    {
+      "id": "q030",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "group-by",
+        "value-grounding"
+      ],
+      "elapsed": 5.097,
+      "pred_sql": "SELECT \n    \"plans\".\"code\" AS \"plan_code\", \n    COUNT(\"subscriptions\".\"id\") AS \"active_subscriptions_count\"\nFROM \n    \"subscriptions\"\nJOIN \n    \"plans\" ON \"subscriptions\".\"plan_id\" = \"plans\".\"id\"\nWHERE \n    \"subscriptions\".\"status\" = 'active'\nGROUP BY \n    \"plans\".\"code\"\nLIMIT 5",
+      "error": null
+    },
+    {
+      "id": "q031",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "time-bucket"
+      ],
+      "elapsed": 7.81,
+      "pred_sql": "SELECT \n    DATE_TRUNC('month', \"created_at\") AS \"month\",\n    COUNT(*) AS \"order_count\"\nFROM \n    orders\nWHERE \n    \"created_at\" >= (CURRENT_DATE - INTERVAL '12 months')\nGROUP BY \n    \"month\"\nORDER BY \n    \"month\" DESC\nLIMIT 12",
+      "error": null
+    },
+    {
+      "id": "q032",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "analytical",
+      "retrieval": "named",
+      "tags": [
+        "window",
+        "tenant-aware",
+        "order-by"
+      ],
+      "elapsed": 13.985,
+      "pred_sql": "SQLQuery: \nSELECT \"tenant_id\", SUM(\"grand_total\") AS total_revenue\nFROM \"orders\"\nGROUP BY \"tenant_id\"\nORDER BY total_revenue DESC\nLIMIT 5",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q033",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "date-math"
+      ],
+      "elapsed": 3.643,
+      "pred_sql": "SELECT AVG(EXTRACT(EPOCH FROM (\"resolved_at\" - \"created_at\")) / 86400) AS average_days_to_resolve\nFROM support.tickets\nWHERE \"resolved_at\" IS NOT NULL",
+      "error": null
+    },
+    {
+      "id": "q034",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "tenant-isolation"
+      ],
+      "elapsed": 6.157,
+      "pred_sql": "SELECT COUNT(*) AS \"order_count\"\nFROM \"orders\" o\nJOIN \"users\" u ON o.\"user_id\" = u.\"id\"\nWHERE o.\"tenant_id\" = u.\"tenant_id\"",
+      "error": null
+    },
+    {
+      "id": "q035",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "group-by",
+        "order-by",
+        "limit"
+      ],
+      "elapsed": 6.369,
+      "pred_sql": "SQLQuery: \nSELECT \"c\".\"name\", COUNT(\"pc\".\"product_id\") AS \"product_count\"\nFROM \"categories\" AS \"c\"\nJOIN \"product_categories\" AS \"pc\" ON \"c\".\"id\" = \"pc\".\"category_id\"\nGROUP BY \"c\".\"name\"\nORDER BY \"product_count\" DESC\nLIMIT 3",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q036",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "value-grounding"
+      ],
+      "elapsed": 7.87,
+      "pred_sql": "SELECT SUM(\"grand_total\") AS total_revenue_eur\nFROM \"orders\"\nWHERE \"currency_code\" = 'EUR'",
+      "error": null
+    },
+    {
+      "id": "q037",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "ratio",
+        "value-grounding"
+      ],
+      "elapsed": 11.448,
+      "pred_sql": "SQLQuery: \nSELECT \n    COUNT(\"cancelled_at\")::float / COUNT(*) AS cancellation_fraction\nFROM \n    orders",
+      "error": "syntax error at or near \"SQLQuery\""
+    },
+    {
+      "id": "q038",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "filter"
+      ],
+      "elapsed": 3.301,
+      "pred_sql": "SELECT \"name\", \"employee_count\"\nFROM accounts\nWHERE \"employee_count\" > 100\nLIMIT 5",
+      "error": null
+    },
+    {
+      "id": "q039",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "multi-join",
+      "retrieval": "2-hop+",
+      "tags": [
+        "multi-join",
+        "group-by"
+      ],
+      "elapsed": 6.815,
+      "pred_sql": "SELECT \n    \"plans\".\"name\" AS \"plan_name\",\n    AVG(\"orders\".\"grand_total\") AS \"average_order_value\"\nFROM \n    \"orders\"\nJOIN \n    \"subscriptions\" ON \"orders\".\"user_id\" = \"subscriptions\".\"user_id\"\nJOIN \n    \"plans\" ON \"subscriptions\".\"plan_id\" = \"plans\".\"id\"\nGROUP BY \n    \"plans\".\"name\"\nLIMIT 5",
+      "error": null
+    },
+    {
+      "id": "q040",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "group-by"
+      ],
+      "elapsed": 4.621,
+      "pred_sql": "SQLQuery: \nSELECT \"status\", COUNT(*) AS \"count\"\nFROM \"invoices\"\nWHERE \"paid_at\" IS NOT NULL\nGROUP BY \"status\"\nLIMIT 5",
+      "error": "syntax error at or near \"SQLQuery\""
+    }
+  ]
+}

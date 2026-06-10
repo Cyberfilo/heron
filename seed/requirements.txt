@@ -1,0 +1,4 @@
+# Pinned for byte-stable, reproducible generation. See DATA-REALISM.md §determinism.
+psycopg[binary]==3.2.3
+numpy==2.2.1
+mimesis==18.0.0

@@ -1,0 +1,562 @@
+{
+  "summary": {
+    "adapter": "raw-llm",
+    "model": "openai/gpt-4o-mini",
+    "n": 40,
+    "ex_at_1": 60.0,
+    "set_recall": null,
+    "ex_by_shape": {
+      "single": 66.7,
+      "join": 63.6,
+      "multi-join": 25.0,
+      "analytical": 0.0
+    },
+    "ex_by_retrieval": {
+      "named": 63.6,
+      "1-hop": 50.0,
+      "2-hop+": 66.7,
+      "lexical-gap": 66.7
+    }
+  },
+  "results": [
+    {
+      "id": "q001",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "count"
+      ],
+      "elapsed": 1.495,
+      "pred_sql": "SELECT COUNT(*) AS total_users FROM identity.users",
+      "error": null
+    },
+    {
+      "id": "q002",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "value-grounding"
+      ],
+      "elapsed": 1.043,
+      "pred_sql": "SELECT COUNT(*) \nFROM catalog.products \nWHERE is_active = true",
+      "error": "column \"is_active\" does not exist"
+    },
+    {
+      "id": "q003",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "lookup"
+      ],
+      "elapsed": 0.931,
+      "pred_sql": "SELECT DISTINCT geo.currencies.code\nFROM geo.currencies",
+      "error": null
+    },
+    {
+      "id": "q004",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "value-grounding"
+      ],
+      "elapsed": 1.204,
+      "pred_sql": "SELECT COUNT(*) AS refunded_order_count\nFROM sales.orders\nWHERE status = 'refunded'",
+      "error": null
+    },
+    {
+      "id": "q005",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "aggregate"
+      ],
+      "elapsed": 1.419,
+      "pred_sql": "SELECT AVG(grand_total) AS average_grand_total\nFROM sales.orders",
+      "error": null
+    },
+    {
+      "id": "q006",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "value-grounding"
+      ],
+      "elapsed": 1.055,
+      "pred_sql": "SELECT COUNT(*) \nFROM support.tickets \nWHERE priority = 'urgent'",
+      "error": null
+    },
+    {
+      "id": "q007",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "distinct"
+      ],
+      "elapsed": 1.037,
+      "pred_sql": "SELECT DISTINCT status FROM sales.orders",
+      "error": null
+    },
+    {
+      "id": "q008",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "value-grounding",
+        "aggregate"
+      ],
+      "elapsed": 1.422,
+      "pred_sql": "SELECT SUM(billing.payments.amount) AS total_captured_payments\nFROM billing.payments\nWHERE billing.payments.status = 'captured'",
+      "error": null
+    },
+    {
+      "id": "q009",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "value-grounding"
+      ],
+      "elapsed": 1.008,
+      "pred_sql": "SELECT COUNT(*) \nFROM catalog.products \nWHERE deleted_at IS NOT NULL",
+      "error": null
+    },
+    {
+      "id": "q010",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "value-grounding"
+      ],
+      "elapsed": 0.986,
+      "pred_sql": "SELECT COUNT(*) \nFROM billing.subscriptions \nWHERE status = 'active'",
+      "error": null
+    },
+    {
+      "id": "q011",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "value-grounding"
+      ],
+      "elapsed": 0.939,
+      "pred_sql": "SELECT COUNT(*) \nFROM geo.countries \nWHERE continent = 'Europe'",
+      "error": null
+    },
+    {
+      "id": "q012",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "aggregate"
+      ],
+      "elapsed": 1.179,
+      "pred_sql": "SELECT AVG(employee_count) AS average_employee_count\nFROM crm.accounts\nWHERE employee_count IS NOT NULL",
+      "error": null
+    },
+    {
+      "id": "q013",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "lexical-gap",
+      "tags": [
+        "lexical-gap"
+      ],
+      "elapsed": 1.605,
+      "pred_sql": "SELECT COUNT(*) AS sign_up_count\nFROM identity.users\nWHERE created_at IS NOT NULL",
+      "error": null
+    },
+    {
+      "id": "q014",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "lexical-gap",
+      "tags": [
+        "lexical-gap",
+        "value-grounding"
+      ],
+      "elapsed": 1.179,
+      "pred_sql": "SELECT COUNT(*) AS open_ticket_count\nFROM support.tickets\nWHERE status = 'open'",
+      "error": null
+    },
+    {
+      "id": "q015",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "lexical-gap",
+      "tags": [
+        "lexical-gap",
+        "value-grounding"
+      ],
+      "elapsed": 1.278,
+      "pred_sql": "SELECT COUNT(*) \nFROM billing.invoices \nWHERE due_at < NOW() AND status != 'paid'",
+      "error": null
+    },
+    {
+      "id": "q016",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "join"
+      ],
+      "elapsed": 1.491,
+      "pred_sql": "SELECT catalog.products.name AS product_name, catalog.brands.name AS brand_name\nFROM catalog.products\nJOIN catalog.brands ON catalog.products.brand_id = catalog.brands.id",
+      "error": null
+    },
+    {
+      "id": "q017",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "join"
+      ],
+      "elapsed": 1.645,
+      "pred_sql": "SELECT \n    catalog.product_reviews.id AS review_id,\n    catalog.product_reviews.rating,\n    catalog.product_reviews.title AS review_title,\n    catalog.product_reviews.body AS review_body,\n    catalog.products.name AS product_name\nFROM \n    catalog.product_reviews\nJOIN \n    catalog.products ON catalog.product_reviews.product_id = catalog.products.id",
+      "error": null
+    },
+    {
+      "id": "q018",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "join"
+      ],
+      "elapsed": 1.433,
+      "pred_sql": "SELECT \n    billing.subscriptions.id AS subscription_id,\n    billing.plans.name AS plan_name\nFROM \n    billing.subscriptions\nJOIN \n    billing.plans ON billing.subscriptions.plan_id = billing.plans.id",
+      "error": null
+    },
+    {
+      "id": "q019",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "join"
+      ],
+      "elapsed": 1.175,
+      "pred_sql": "SELECT sales.orders.id AS order_id, identity.users.email AS user_email\nFROM sales.orders\nJOIN identity.users ON sales.orders.user_id = identity.users.id",
+      "error": null
+    },
+    {
+      "id": "q020",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "anti-join"
+      ],
+      "elapsed": 1.654,
+      "pred_sql": "SELECT p.id, p.name\nFROM catalog.products p\nLEFT JOIN catalog.product_reviews pr ON p.id = pr.product_id\nWHERE pr.id IS NULL",
+      "error": null
+    },
+    {
+      "id": "q021",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "value-grounding",
+        "join"
+      ],
+      "elapsed": 1.591,
+      "pred_sql": "SELECT COUNT(*) AS active_subscribers\nFROM billing.subscriptions\nWHERE plan_id IN (\n    SELECT id FROM billing.plans WHERE name = 'Pro' AND is_active = true\n) AND status = 'active'",
+      "error": null
+    },
+    {
+      "id": "q022",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "group-by"
+      ],
+      "elapsed": 1.491,
+      "pred_sql": "SELECT \n    currency_code, \n    SUM(grand_total) AS total_revenue \nFROM \n    sales.orders \nGROUP BY \n    currency_code",
+      "error": null
+    },
+    {
+      "id": "q023",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "group-by",
+        "tenant-aware"
+      ],
+      "elapsed": 417.324,
+      "pred_sql": "SELECT tenant_id, COUNT(*) AS order_count\nFROM sales.orders\nGROUP BY tenant_id",
+      "error": null
+    },
+    {
+      "id": "q024",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "group-by",
+        "having"
+      ],
+      "elapsed": 10.73,
+      "pred_sql": "SELECT p.id, p.name, AVG(r.rating) AS average_rating\nFROM catalog.products p\nJOIN catalog.product_reviews r ON p.id = r.product_id\nGROUP BY p.id\nHAVING AVG(r.rating) > 4",
+      "error": null
+    },
+    {
+      "id": "q025",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "group-by",
+        "having"
+      ],
+      "elapsed": 7.587,
+      "pred_sql": "SELECT identity.users.id, identity.users.full_name, COUNT(sales.orders.id) AS order_count\nFROM identity.users\nJOIN sales.orders ON identity.users.id = sales.orders.user_id\nGROUP BY identity.users.id\nHAVING COUNT(sales.orders.id) > 3",
+      "error": null
+    },
+    {
+      "id": "q026",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "multi-join",
+      "retrieval": "2-hop+",
+      "tags": [
+        "multi-join",
+        "group-by"
+      ],
+      "elapsed": 5.811,
+      "pred_sql": "SELECT \n    geo.countries.name AS shipping_country,\n    SUM(sales.orders.grand_total) AS total_revenue\nFROM \n    sales.orders\nJOIN \n    geo.addresses AS shipping_address ON sales.orders.shipping_address_id = shipping_address.id\nJOIN \n    geo.countries ON shipping_address.country_id = geo.countries.id\nGROUP BY \n    geo.countries.name\nORDER BY \n    total_revenue DESC",
+      "error": null
+    },
+    {
+      "id": "q027",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "multi-join",
+      "retrieval": "1-hop",
+      "tags": [
+        "group-by",
+        "order-by",
+        "limit"
+      ],
+      "elapsed": 4.595,
+      "pred_sql": "SELECT \n    catalog.products.id AS product_id,\n    catalog.products.name AS product_name,\n    SUM(sales.order_items.quantity) AS total_units_sold\nFROM \n    sales.order_items\nJOIN \n    catalog.products ON sales.order_items.product_variant_id = catalog.product_variants.id\nGROUP BY \n    catalog.products.id\nORDER BY \n    total_units_sold DESC\nLIMIT 5",
+      "error": "missing FROM-clause entry for table \"product_variants\""
+    },
+    {
+      "id": "q028",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "multi-join",
+      "retrieval": "1-hop",
+      "tags": [
+        "multi-join",
+        "distinct"
+      ],
+      "elapsed": 5.695,
+      "pred_sql": "SELECT DISTINCT identity.users.email\nFROM sales.gift_card_transactions\nJOIN identity.users ON sales.gift_card_transactions.issued_to_user_id = identity.users.id\nWHERE sales.gift_card_transactions.amount < 0\nUNION\nSELECT DISTINCT identity.users.email\nFROM sales.return_items\nJOIN sales.orders ON sales.return_items.order_id = sales.orders.id\nJOIN identity.users ON sales.orders.user_id = identity.users.id\nWHERE sales.return_items.refund_amount > 0\nUNION\nSELECT DISTINCT identity.users.email\nFROM billing.payment_refunds\nJOIN identity.users ON billing.payment_refunds.payment_id = billing.payments.id\nJOIN billing.payments ON billing.payment_refunds.payment_id = billing.payments.id\nWHERE billing.payment_refunds.amount > 0",
+      "error": "column gift_card_transactions.issued_to_user_id does not exist"
+    },
+    {
+      "id": "q029",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "2-hop+",
+      "tags": [
+        "value-grounding",
+        "distinct"
+      ],
+      "elapsed": 2.9,
+      "pred_sql": "SELECT COUNT(DISTINCT geo.addresses.user_id) AS user_count\nFROM geo.addresses\nWHERE geo.addresses.country_id = (SELECT id FROM geo.countries WHERE name = 'Germany')",
+      "error": null
+    },
+    {
+      "id": "q030",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "group-by",
+        "value-grounding"
+      ],
+      "elapsed": 3.963,
+      "pred_sql": "SELECT bp.code AS plan_code, COUNT(s.id) AS active_subscription_count\nFROM billing.plans AS bp\nLEFT JOIN billing.subscriptions AS s ON bp.id = s.plan_id AND s.status = 'active'\nGROUP BY bp.code",
+      "error": null
+    },
+    {
+      "id": "q031",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "time-bucket"
+      ],
+      "elapsed": 2.451,
+      "pred_sql": "SELECT \n    DATE_TRUNC('month', o.placed_at) AS month,\n    COUNT(o.id) AS order_count\nFROM \n    sales.orders o\nWHERE \n    o.placed_at >= NOW() - INTERVAL '12 months'\nGROUP BY \n    month\nORDER BY \n    month",
+      "error": null
+    },
+    {
+      "id": "q032",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "analytical",
+      "retrieval": "named",
+      "tags": [
+        "window",
+        "tenant-aware",
+        "order-by"
+      ],
+      "elapsed": 2.861,
+      "pred_sql": "SELECT \n    identity.tenants.id AS tenant_id,\n    SUM(sales.orders.grand_total) AS total_revenue\nFROM \n    identity.tenants\nLEFT JOIN \n    sales.orders ON identity.tenants.id = sales.orders.tenant_id\nGROUP BY \n    identity.tenants.id\nORDER BY \n    total_revenue DESC",
+      "error": null
+    },
+    {
+      "id": "q033",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "date-math"
+      ],
+      "elapsed": 2.282,
+      "pred_sql": "SELECT AVG(EXTRACT(EPOCH FROM (closed_at - created_at)) / 86400) AS average_days_to_resolve\nFROM support.tickets\nWHERE closed_at IS NOT NULL",
+      "error": null
+    },
+    {
+      "id": "q034",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "tenant-isolation"
+      ],
+      "elapsed": 1.726,
+      "pred_sql": "SELECT COUNT(*) AS order_count\nFROM sales.orders o\nJOIN identity.users u ON o.user_id = u.id\nWHERE o.tenant_id = u.tenant_id",
+      "error": null
+    },
+    {
+      "id": "q035",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "group-by",
+        "order-by",
+        "limit"
+      ],
+      "elapsed": 2.225,
+      "pred_sql": "SELECT c.id, c.name, COUNT(pc.product_id) AS product_count\nFROM catalog.categories c\nLEFT JOIN catalog.product_categories pc ON c.id = pc.category_id\nGROUP BY c.id, c.name\nORDER BY product_count DESC\nLIMIT 3",
+      "error": null
+    },
+    {
+      "id": "q036",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "value-grounding"
+      ],
+      "elapsed": 1.507,
+      "pred_sql": "SELECT SUM(sales.orders.grand_total) AS total_revenue_eur\nFROM sales.orders\nWHERE sales.orders.currency_code = 'EUR'",
+      "error": null
+    },
+    {
+      "id": "q037",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "ratio",
+        "value-grounding"
+      ],
+      "elapsed": 2.072,
+      "pred_sql": "SELECT \n    COUNT(CASE WHEN status = 'cancelled' THEN 1 END) * 1.0 / COUNT(*) AS cancelled_order_fraction\nFROM \n    sales.orders",
+      "error": null
+    },
+    {
+      "id": "q038",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "filter"
+      ],
+      "elapsed": 1.135,
+      "pred_sql": "SELECT *\nFROM crm.accounts\nWHERE employee_count > 100",
+      "error": null
+    },
+    {
+      "id": "q039",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "multi-join",
+      "retrieval": "2-hop+",
+      "tags": [
+        "multi-join",
+        "group-by"
+      ],
+      "elapsed": 2.565,
+      "pred_sql": "SELECT \n    billing.plans.name AS plan_name,\n    AVG(sales.orders.grand_total) AS average_order_value\nFROM \n    sales.orders\nJOIN \n    billing.subscriptions ON sales.orders.user_id = billing.subscriptions.user_id\nJOIN \n    billing.plans ON billing.subscriptions.plan_id = billing.plans.id\nGROUP BY \n    billing.plans.name",
+      "error": null
+    },
+    {
+      "id": "q040",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "group-by"
+      ],
+      "elapsed": 1.704,
+      "pred_sql": "SELECT status, COUNT(*) AS paid_invoices_count\nFROM billing.invoices\nWHERE status = 'paid'\nGROUP BY status",
+      "error": null
+    }
+  ]
+}

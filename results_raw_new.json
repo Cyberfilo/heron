@@ -1,0 +1,692 @@
+{
+  "summary": {
+    "adapter": "raw-llm",
+    "model": "openai/gpt-4o",
+    "n": 35,
+    "ex_at_1": 60.0,
+    "set_recall": null,
+    "ex_by_shape": {
+      "single": 65.0,
+      "join": 75.0,
+      "multi-join": 40.0,
+      "analytical": 0.0
+    },
+    "ex_by_retrieval": {
+      "named": 68.8,
+      "1-hop": 60.0,
+      "2-hop+": 50.0,
+      "lexical-gap": 40.0
+    },
+    "avg_gen_ms": 1218.1,
+    "avg_exec_ms": 19.1,
+    "avg_total_ms": 1237.2,
+    "avg_gold_exec_ms": 23.1,
+    "avg_tokens": 15315.9,
+    "total_tokens": 536057,
+    "token_coverage": "35/35"
+  },
+  "results": [
+    {
+      "id": "q041",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "value-grounding"
+      ],
+      "gen_ms": 1296.3,
+      "exec_ms": 20.2,
+      "gold_exec_ms": 9.6,
+      "prompt_tokens": 15260,
+      "completion_tokens": 24,
+      "tokens": 15284,
+      "pred_sql": "SELECT COUNT(*) AS bounced_sessions_count\nFROM analytics.web_sessions\nWHERE is_bounce = TRUE",
+      "error": null
+    },
+    {
+      "id": "q042",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "value-grounding"
+      ],
+      "gen_ms": 1500.4,
+      "exec_ms": 0.6,
+      "gold_exec_ms": 1.0,
+      "prompt_tokens": 15262,
+      "completion_tokens": 26,
+      "tokens": 15288,
+      "pred_sql": "SELECT COUNT(*) AS active_coupons_count\nFROM pricing.coupons\nWHERE status = 'active'",
+      "error": null
+    },
+    {
+      "id": "q043",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "value-grounding",
+        "aggregate"
+      ],
+      "gen_ms": 802.0,
+      "exec_ms": 2.6,
+      "gold_exec_ms": 4.1,
+      "prompt_tokens": 15264,
+      "completion_tokens": 27,
+      "tokens": 15291,
+      "pred_sql": "SELECT SUM(amount) AS total_successful_refunds\nFROM billing.payment_refunds\nWHERE status = 'successful'",
+      "error": "invalid input value for enum refund_status: \"successful\""
+    },
+    {
+      "id": "q044",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "value-grounding"
+      ],
+      "gen_ms": 1232.1,
+      "exec_ms": 1.4,
+      "gold_exec_ms": 6.4,
+      "prompt_tokens": 15265,
+      "completion_tokens": 22,
+      "tokens": 15287,
+      "pred_sql": "SELECT COUNT(*) AS deletion_count\nFROM audit.audit_log\nWHERE action = 'DELETE'",
+      "error": "invalid input value for enum audit_action: \"DELETE\""
+    },
+    {
+      "id": "q045",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "aggregate"
+      ],
+      "gen_ms": 1091.1,
+      "exec_ms": 2.1,
+      "gold_exec_ms": 7.6,
+      "prompt_tokens": 15262,
+      "completion_tokens": 21,
+      "tokens": 15283,
+      "pred_sql": "SELECT AVG(score) AS average_csat_score\nFROM support.csat_responses",
+      "error": null
+    },
+    {
+      "id": "q046",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "value-grounding"
+      ],
+      "gen_ms": 1039.8,
+      "exec_ms": 3.3,
+      "gold_exec_ms": 9.9,
+      "prompt_tokens": 15261,
+      "completion_tokens": 25,
+      "tokens": 15286,
+      "pred_sql": "SELECT COUNT(*) AS won_opportunities_count\nFROM crm.opportunities\nWHERE is_won = TRUE",
+      "error": null
+    },
+    {
+      "id": "q047",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "lexical-gap",
+      "tags": [
+        "lexical-gap",
+        "value-grounding"
+      ],
+      "gen_ms": 1033.5,
+      "exec_ms": 2.6,
+      "gold_exec_ms": 8.6,
+      "prompt_tokens": 15261,
+      "completion_tokens": 33,
+      "tokens": 15294,
+      "pred_sql": "SELECT COUNT(*) AS churned_subscriptions_count\nFROM billing.subscriptions\nWHERE status = 'canceled' AND ended_at IS NOT NULL",
+      "error": null
+    },
+    {
+      "id": "q048",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "lexical-gap",
+      "tags": [
+        "lexical-gap",
+        "value-grounding"
+      ],
+      "gen_ms": 1039.1,
+      "exec_ms": 30.1,
+      "gold_exec_ms": 7.3,
+      "prompt_tokens": 15263,
+      "completion_tokens": 27,
+      "tokens": 15290,
+      "pred_sql": "SELECT COUNT(*) AS marketing_blasts_sent\nFROM marketing.campaign_messages\nWHERE sent_at IS NOT NULL",
+      "error": null
+    },
+    {
+      "id": "q049",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "lexical-gap",
+      "tags": [
+        "lexical-gap",
+        "value-grounding"
+      ],
+      "gen_ms": 1857.4,
+      "exec_ms": 2.0,
+      "gold_exec_ms": 14.7,
+      "prompt_tokens": 15264,
+      "completion_tokens": 27,
+      "tokens": 15291,
+      "pred_sql": "SELECT COUNT(*) AS goods_out_movements_count\nFROM inventory.stock_movements\nWHERE kind = 'goods-out'",
+      "error": "invalid input value for enum movement_kind: \"goods-out\""
+    },
+    {
+      "id": "q050",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "lexical-gap",
+      "tags": [
+        "lexical-gap",
+        "value-grounding"
+      ],
+      "gen_ms": 927.3,
+      "exec_ms": 4.0,
+      "gold_exec_ms": 6.1,
+      "prompt_tokens": 15261,
+      "completion_tokens": 45,
+      "tokens": 15306,
+      "pred_sql": "SELECT COUNT(DISTINCT l.id) AS leads_converted_to_customers\nFROM crm.leads l\nWHERE l.converted_account_id IS NOT NULL OR l.converted_contact_id IS NOT NULL",
+      "error": null
+    },
+    {
+      "id": "q051",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "lexical-gap",
+      "tags": [
+        "lexical-gap",
+        "value-grounding"
+      ],
+      "gen_ms": 892.0,
+      "exec_ms": 12.0,
+      "gold_exec_ms": 21.8,
+      "prompt_tokens": 15262,
+      "completion_tokens": 28,
+      "tokens": 15290,
+      "pred_sql": "SELECT COUNT(*) AS failed_webhook_callbacks\nFROM comms.webhook_deliveries\nWHERE status = 'failed'",
+      "error": null
+    },
+    {
+      "id": "q052",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "group-by"
+      ],
+      "gen_ms": 978.3,
+      "exec_ms": 26.9,
+      "gold_exec_ms": 38.0,
+      "prompt_tokens": 15263,
+      "completion_tokens": 33,
+      "tokens": 15296,
+      "pred_sql": "SELECT \n    status AS delivery_state, \n    COUNT(*) AS notification_count\nFROM \n    comms.notifications\nGROUP BY \n    status",
+      "error": null
+    },
+    {
+      "id": "q053",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "group-by"
+      ],
+      "gen_ms": 943.6,
+      "exec_ms": 10.9,
+      "gold_exec_ms": 7.8,
+      "prompt_tokens": 15263,
+      "completion_tokens": 38,
+      "tokens": 15301,
+      "pred_sql": "SELECT \n    action, \n    COUNT(*) AS entry_count\nFROM \n    audit.audit_log\nGROUP BY \n    action\nORDER BY \n    entry_count DESC",
+      "error": null
+    },
+    {
+      "id": "q054",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "time-bucket",
+        "group-by"
+      ],
+      "gen_ms": 1011.0,
+      "exec_ms": 147.9,
+      "gold_exec_ms": 124.4,
+      "prompt_tokens": 15265,
+      "completion_tokens": 45,
+      "tokens": 15310,
+      "pred_sql": "SELECT \n    DATE_TRUNC('month', occurred_at) AS month, \n    COUNT(*) AS event_count\nFROM \n    analytics.events\nGROUP BY \n    month\nORDER BY \n    month",
+      "error": null
+    },
+    {
+      "id": "q055",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "group-by"
+      ],
+      "gen_ms": 1125.9,
+      "exec_ms": 12.0,
+      "gold_exec_ms": 12.6,
+      "prompt_tokens": 15264,
+      "completion_tokens": 28,
+      "tokens": 15292,
+      "pred_sql": "SELECT status, COUNT(*) AS failed_count\nFROM ops.job_runs\nWHERE status = 'failed'\nGROUP BY status",
+      "error": null
+    },
+    {
+      "id": "q056",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "ratio",
+        "value-grounding"
+      ],
+      "gen_ms": 1533.7,
+      "exec_ms": 31.4,
+      "gold_exec_ms": 20.3,
+      "prompt_tokens": 15261,
+      "completion_tokens": 55,
+      "tokens": 15316,
+      "pred_sql": "SELECT \n    COALESCE(SUM(CASE WHEN bounced_at IS NOT NULL THEN 1 ELSE 0 END) / NULLIF(COUNT(*), 0)::float, 0) AS bounce_fraction\nFROM \n    marketing.campaign_messages",
+      "error": null
+    },
+    {
+      "id": "q057",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "group-by"
+      ],
+      "gen_ms": 1098.7,
+      "exec_ms": 20.5,
+      "gold_exec_ms": 14.8,
+      "prompt_tokens": 15264,
+      "completion_tokens": 46,
+      "tokens": 15310,
+      "pred_sql": "SELECT \n    billing.invoices.currency_code, \n    SUM(billing.invoices.total) AS total_invoiced_amount\nFROM \n    billing.invoices\nGROUP BY \n    billing.invoices.currency_code",
+      "error": null
+    },
+    {
+      "id": "q058",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "group-by",
+        "tenant-aware",
+        "value-grounding"
+      ],
+      "gen_ms": 977.5,
+      "exec_ms": 2.5,
+      "gold_exec_ms": 2.8,
+      "prompt_tokens": 15263,
+      "completion_tokens": 42,
+      "tokens": 15305,
+      "pred_sql": "SELECT \n    tenant_id, \n    COUNT(*) AS open_opportunities_count\nFROM \n    crm.opportunities\nWHERE \n    is_closed = FALSE\nGROUP BY \n    tenant_id",
+      "error": null
+    },
+    {
+      "id": "q059",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "join"
+      ],
+      "gen_ms": 976.4,
+      "exec_ms": 72.0,
+      "gold_exec_ms": 61.9,
+      "prompt_tokens": 15268,
+      "completion_tokens": 46,
+      "tokens": 15314,
+      "pred_sql": "SELECT \n    comms.notifications.id AS notification_id,\n    identity.users.email AS user_email\nFROM \n    comms.notifications\nJOIN \n    identity.users ON comms.notifications.user_id = identity.users.id",
+      "error": null
+    },
+    {
+      "id": "q060",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "join"
+      ],
+      "gen_ms": 1083.8,
+      "exec_ms": 5.6,
+      "gold_exec_ms": 3.5,
+      "prompt_tokens": 15264,
+      "completion_tokens": 52,
+      "tokens": 15316,
+      "pred_sql": "SELECT \n    opp.id AS opportunity_id,\n    opp.name AS opportunity_name,\n    pipe.name AS pipeline_name\nFROM \n    crm.opportunities AS opp\nJOIN \n    crm.pipelines AS pipe ON opp.pipeline_id = pipe.id",
+      "error": null
+    },
+    {
+      "id": "q061",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "join",
+        "value-grounding"
+      ],
+      "gen_ms": 1275.0,
+      "exec_ms": 8.0,
+      "gold_exec_ms": 23.1,
+      "prompt_tokens": 15263,
+      "completion_tokens": 44,
+      "tokens": 15307,
+      "pred_sql": "SELECT COUNT(DISTINCT pr.id) AS refund_count\nFROM billing.payment_refunds pr\nJOIN billing.payments p ON pr.payment_id = p.id\nWHERE p.status = 'captured'",
+      "error": null
+    },
+    {
+      "id": "q062",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "anti-join"
+      ],
+      "gen_ms": 908.1,
+      "exec_ms": 3.9,
+      "gold_exec_ms": 6.3,
+      "prompt_tokens": 15261,
+      "completion_tokens": 42,
+      "tokens": 15303,
+      "pred_sql": "SELECT c.id, c.code\nFROM pricing.coupons c\nLEFT JOIN pricing.coupon_redemptions cr ON c.id = cr.coupon_id\nWHERE cr.id IS NULL",
+      "error": null
+    },
+    {
+      "id": "q063",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "join",
+        "group-by"
+      ],
+      "gen_ms": 1209.1,
+      "exec_ms": 16.0,
+      "gold_exec_ms": 6.7,
+      "prompt_tokens": 15264,
+      "completion_tokens": 69,
+      "tokens": 15333,
+      "pred_sql": "SELECT \n    p.code AS coupon_code, \n    SUM(pr.discount_amount) AS total_redeemed_discount\nFROM \n    pricing.coupons p\nJOIN \n    pricing.coupon_redemptions pr ON p.id = pr.coupon_id\nGROUP BY \n    p.code\nORDER BY \n    p.code",
+      "error": null
+    },
+    {
+      "id": "q064",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "group-by",
+        "having"
+      ],
+      "gen_ms": 1919.0,
+      "exec_ms": 2.7,
+      "gold_exec_ms": 2.0,
+      "prompt_tokens": 15272,
+      "completion_tokens": 63,
+      "tokens": 15335,
+      "pred_sql": "SELECT \n    csat.rated_agent_id AS agent_id, \n    AVG(csat.score) AS average_score\nFROM \n    support.csat_responses csat\nGROUP BY \n    csat.rated_agent_id\nHAVING \n    AVG(csat.score) < 3",
+      "error": null
+    },
+    {
+      "id": "q065",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "group-by",
+        "having"
+      ],
+      "gen_ms": 916.7,
+      "exec_ms": 41.3,
+      "gold_exec_ms": 42.7,
+      "prompt_tokens": 15271,
+      "completion_tokens": 68,
+      "tokens": 15339,
+      "pred_sql": "SELECT \n    c.name AS campaign_name, \n    COUNT(cm.id) AS message_count\nFROM \n    marketing.campaigns c\nJOIN \n    marketing.campaign_messages cm ON c.id = cm.campaign_id\nGROUP BY \n    c.name\nHAVING \n    COUNT(cm.id) > 100",
+      "error": null
+    },
+    {
+      "id": "q066",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "analytical",
+      "retrieval": "1-hop",
+      "tags": [
+        "window",
+        "order-by",
+        "value-grounding"
+      ],
+      "gen_ms": 1141.6,
+      "exec_ms": 6.0,
+      "gold_exec_ms": 2.4,
+      "prompt_tokens": 15263,
+      "completion_tokens": 82,
+      "tokens": 15345,
+      "pred_sql": "SELECT \n    p.id AS pipeline_id,\n    p.name AS pipeline_name,\n    COUNT(o.id) AS won_opportunities_count\nFROM \n    crm.pipelines p\nLEFT JOIN \n    crm.opportunities o ON p.id = o.pipeline_id AND o.is_won = TRUE\nGROUP BY \n    p.id, p.name\nORDER BY \n    won_opportunities_count DESC",
+      "error": null
+    },
+    {
+      "id": "q067",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "analytical",
+      "retrieval": "named",
+      "tags": [
+        "window",
+        "cte",
+        "time-bucket",
+        "order-by",
+        "value-grounding"
+      ],
+      "gen_ms": 1199.5,
+      "exec_ms": 2.6,
+      "gold_exec_ms": 65.2,
+      "prompt_tokens": 15268,
+      "completion_tokens": 105,
+      "tokens": 15373,
+      "pred_sql": "SELECT\n    date_trunc('month', le.occurred_at) AS month,\n    SUM(CASE WHEN le.direction = 'debit' THEN le.amount ELSE 0 END) OVER (ORDER BY date_trunc('month', le.occurred_at)) AS running_total_debits\nFROM\n    billing.ledger_entries le\nWHERE\n    le.direction = 'debit'\nGROUP BY\n    date_trunc('month', le.occurred_at)\nORDER BY\n    month",
+      "error": "column \"le.direction\" must appear in the GROUP BY clause or be used in an aggregate function"
+    },
+    {
+      "id": "q068",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "single",
+      "retrieval": "named",
+      "tags": [
+        "group-by",
+        "order-by",
+        "limit"
+      ],
+      "gen_ms": 849.1,
+      "exec_ms": 31.9,
+      "gold_exec_ms": 32.5,
+      "prompt_tokens": 15265,
+      "completion_tokens": 33,
+      "tokens": 15298,
+      "pred_sql": "SELECT event_name, COUNT(*) AS event_count\nFROM analytics.events\nGROUP BY event_name\nORDER BY event_count DESC\nLIMIT 5",
+      "error": null
+    },
+    {
+      "id": "q069",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "join",
+        "group-by"
+      ],
+      "gen_ms": 1181.0,
+      "exec_ms": 3.9,
+      "gold_exec_ms": 5.1,
+      "prompt_tokens": 15267,
+      "completion_tokens": 59,
+      "tokens": 15326,
+      "pred_sql": "SELECT \n    sa.display_name, \n    AVG(cr.score) AS average_csat_score\nFROM \n    support.csat_responses cr\nJOIN \n    support.support_agents sa ON cr.rated_agent_id = sa.user_id\nGROUP BY \n    sa.display_name",
+      "error": null
+    },
+    {
+      "id": "q070",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "multi-join",
+      "retrieval": "2-hop+",
+      "tags": [
+        "multi-join",
+        "group-by"
+      ],
+      "gen_ms": 1796.4,
+      "exec_ms": 47.8,
+      "gold_exec_ms": 44.1,
+      "prompt_tokens": 15263,
+      "completion_tokens": 103,
+      "tokens": 15366,
+      "pred_sql": "SELECT \n    inv_warehouses.name AS warehouse_name,\n    COUNT(inv_stock_movements.id) AS stock_movement_count\nFROM \n    inventory.stock_movements AS inv_stock_movements\nJOIN \n    inventory.stock_locations AS inv_stock_locations ON inv_stock_movements.stock_location_id = inv_stock_locations.id\nJOIN \n    inventory.warehouses AS inv_warehouses ON inv_stock_locations.warehouse_id = inv_warehouses.id\nGROUP BY \n    inv_warehouses.name",
+      "error": null
+    },
+    {
+      "id": "q071",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "multi-join",
+      "retrieval": "1-hop",
+      "tags": [
+        "multi-join",
+        "anti-join",
+        "distinct"
+      ],
+      "gen_ms": 998.9,
+      "exec_ms": 1.8,
+      "gold_exec_ms": 77.1,
+      "prompt_tokens": 15270,
+      "completion_tokens": 57,
+      "tokens": 15327,
+      "pred_sql": "SELECT DISTINCT comms.email_log.recipient_email\nFROM comms.email_log\nLEFT JOIN sales.orders ON comms.email_log.user_id = sales.orders.user_id\nWHERE comms.email_log.opened_at IS NOT NULL\n  AND sales.orders.id IS NULL",
+      "error": "column email_log.opened_at does not exist"
+    },
+    {
+      "id": "q072",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "multi-join",
+      "retrieval": "2-hop+",
+      "tags": [
+        "multi-join",
+        "group-by",
+        "value-grounding"
+      ],
+      "gen_ms": 1412.5,
+      "exec_ms": 17.7,
+      "gold_exec_ms": 20.5,
+      "prompt_tokens": 15270,
+      "completion_tokens": 90,
+      "tokens": 15360,
+      "pred_sql": "SELECT \n    p.code AS plan_code,\n    SUM(i.total) AS total_invoiced_amount\nFROM \n    billing.invoices i\nJOIN \n    billing.subscriptions s ON i.subscription_id = s.id\nJOIN \n    billing.plans p ON s.plan_id = p.id\nWHERE \n    i.status = 'paid'\nGROUP BY \n    p.code\nORDER BY \n    total_invoiced_amount DESC",
+      "error": null
+    },
+    {
+      "id": "q073",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "multi-join",
+      "retrieval": "2-hop+",
+      "tags": [
+        "multi-join",
+        "group-by",
+        "value-grounding"
+      ],
+      "gen_ms": 1690.1,
+      "exec_ms": 38.4,
+      "gold_exec_ms": 33.2,
+      "prompt_tokens": 15264,
+      "completion_tokens": 127,
+      "tokens": 15391,
+      "pred_sql": "SELECT\n    geo.countries.name AS country_name,\n    SUM(sales.return_items.refund_amount) AS total_refunded_amount\nFROM\n    sales.returns\nJOIN\n    sales.orders ON sales.returns.order_id = sales.orders.id\nJOIN\n    geo.addresses ON sales.orders.shipping_address_id = geo.addresses.id\nJOIN\n    geo.countries ON geo.addresses.country_id = geo.countries.id\nJOIN\n    sales.return_items ON sales.returns.id = sales.return_items.return_id\nGROUP BY\n    geo.countries.name\nORDER BY\n    total_refunded_amount DESC",
+      "error": null
+    },
+    {
+      "id": "q074",
+      "ex": true,
+      "set_recall": null,
+      "sql_shape": "join",
+      "retrieval": "1-hop",
+      "tags": [
+        "tenant-isolation"
+      ],
+      "gen_ms": 864.9,
+      "exec_ms": 28.6,
+      "gold_exec_ms": 15.6,
+      "prompt_tokens": 15269,
+      "completion_tokens": 40,
+      "tokens": 15309,
+      "pred_sql": "SELECT COUNT(*) AS notification_count\nFROM comms.notifications n\nJOIN identity.users u ON n.user_id = u.id\nWHERE n.tenant_id = u.tenant_id",
+      "error": null
+    },
+    {
+      "id": "q075",
+      "ex": false,
+      "set_recall": null,
+      "sql_shape": "multi-join",
+      "retrieval": "2-hop+",
+      "tags": [
+        "multi-join",
+        "value-grounding",
+        "distinct"
+      ],
+      "gen_ms": 2831.7,
+      "exec_ms": 8.3,
+      "gold_exec_ms": 48.1,
+      "prompt_tokens": 15272,
+      "completion_tokens": 123,
+      "tokens": 15395,
+      "pred_sql": "SELECT DISTINCT i_users.email\nFROM identity.users AS i_users\nJOIN billing.subscriptions AS b_subs ON i_users.id = b_subs.user_id\nJOIN crm.contacts AS crm_contacts ON i_users.id = crm_contacts.owner_user_id\nJOIN support.tickets AS s_tickets ON crm_contacts.id = s_tickets.requester_user_id\nJOIN billing.plans AS b_plans ON b_subs.plan_id = b_plans.id\nWHERE b_subs.status = 'active'\n  AND b_plans.name = 'Enterprise'\n  AND s_tickets.status IS NOT NULL",
+      "error": null
+    }
+  ]
+}

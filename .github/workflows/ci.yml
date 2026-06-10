@@ -1,0 +1,56 @@
+name: ci
+
+# The benchmark's core guarantee is trustworthy gold, so CI loads the real schema into a
+# Postgres service, seeds a deterministic `tiny` database, and runs the gold-quality audit on
+# every push/PR. The audit's hard checks (gold executes; declared tables == referenced tables)
+# are scale-independent, so `tiny` is enough to catch a bad gold without paying for `small`.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: heron
+          POSTGRES_PASSWORD: heron
+          POSTGRES_DB: heron
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U heron"
+          --health-interval 5s --health-timeout 5s --health-retries 20
+    env:
+      DSN: postgresql://heron:heron@localhost:5432/heron
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install postgres client + python deps
+        run: |
+          sudo apt-get update && sudo apt-get install -y --no-install-recommends postgresql-client
+          python -m pip install --upgrade pip
+          pip install "psycopg[binary]" sqlglot
+          pip install -r seed/requirements.txt
+
+      - name: Syntax check (harness + questions)
+        run: python -m compileall -q harness questions
+
+      - name: Load the 14-module schema (211 tables)
+        run: make schema DSN="$DSN"
+
+      - name: Seed a deterministic tiny database
+        run: make seed SCALE=tiny SEED=42 DSN="$DSN"
+
+      - name: Referential-integrity + invariants
+        run: make verify DSN="$DSN"
+
+      - name: Gold-quality audit (every gold must execute; gold_tables == referenced)
+        run: make audit DSN="$DSN"
