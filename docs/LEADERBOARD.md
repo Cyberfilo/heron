@@ -15,11 +15,11 @@ committed adapter). Ranked by the 0-100 **Grade** ([METHODOLOGY §7](METHODOLOGY
 
 | Rank | Tool | Grade | EX@1 | VES | Soft-F1 | Set-Recall | ms/q | tok/q | $/run | errors |
 |---:|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| 1 | Vanna | **62.0** | 46.0 | 46.8 | 48.2 | 79.0 | 1,606 | 2,000 | $0.53 | 18 |
-| 2 | PromptQuery | **59.9** | 58.0 | 57.2 | 60.2 | 98.0 | 2,328 | 4,257 | $1.11 | 7 |
-| 3 | raw-gpt-4o | **56.8** | 55.0 | 55.4 | 56.8 | n/a | 1,407 | 15,314 | $3.87 | 10 |
-| 4 | MAC-SQL | **48.1** | 49.0 | 48.7 | 51.7 | 90.0 | 2,996 | 15,656 | $4.00 | 3 |
-| 5 | DIN-SQL | **48.0** | 52.0 | 53.0 | 54.8 | 90.0 | 5,153 | 16,343 | $4.21 | 6 |
+| 1 | PromptQuery | **68.7** | 72.0 | 72.2 | 73.9 | 99.0 | 2,553 | 4,689 | $1.21 | 0 |
+| 2 | Vanna | **61.9** | 46.0 | 46.3 | 48.2 | 79.0 | 1,606 | 2,000 | $0.53 | 18 |
+| 3 | raw-gpt-4o | **56.7** | 55.0 | 55.2 | 56.8 | n/a | 1,406 | 15,314 | $3.87 | 10 |
+| 4 | MAC-SQL | **48.1** | 49.0 | 48.9 | 51.7 | 90.0 | 2,996 | 15,656 | $4.00 | 3 |
+| 5 | DIN-SQL | **47.9** | 52.0 | 52.8 | 54.8 | 90.0 | 5,152 | 16,343 | $4.21 | 6 |
 
 _Grade = .45·EX + .20·EFF(VES) + .10·REL + .15·TOK + .10·LAT (METHODOLOGY §7). EX/VES/Soft-F1/Set-Recall/errors are **CI-recomputed from each tool's SQL**; tokens are the tool's self-reported `response.usage`. Submit a tool: see [CONTRIBUTING.md](../CONTRIBUTING.md)._
 
