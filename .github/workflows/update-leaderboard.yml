@@ -1,0 +1,69 @@
+name: update-leaderboard
+
+# After a submission (or harness/questions change) lands on main, regenerate docs/LEADERBOARD.md
+# from submissions/*.json by re-running every tool's SQL, and commit the result. The leaderboard
+# is therefore always a pure function of the committed submissions — never hand-edited. The bot
+# commits only docs/LEADERBOARD.md + submissions/leaderboard.json, which are NOT in the trigger
+# paths, so its own commit can't re-trigger this workflow.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'submissions/*.json'
+      - 'harness/**'
+      - 'questions/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: heron
+          POSTGRES_PASSWORD: heron
+          POSTGRES_DB: heron
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U heron"
+          --health-interval 5s --health-timeout 5s --health-retries 20
+    env:
+      DSN: postgresql://heron:heron@localhost:5432/heron
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install deps
+        run: |
+          sudo apt-get update && sudo apt-get install -y --no-install-recommends postgresql-client
+          python -m pip install --upgrade pip
+          pip install "psycopg[binary]" sqlglot openai
+          pip install -r seed/requirements.txt
+
+      - name: Load schema + seed the gold database (small)
+        run: |
+          make schema DSN="$DSN"
+          make seed SCALE=small SEED=42 DSN="$DSN"
+
+      - name: Regenerate the leaderboard from submissions
+        run: python harness/build_leaderboard.py --dsn "$DSN"
+
+      - name: Commit if the leaderboard changed
+        run: |
+          git config user.name "heron-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/LEADERBOARD.md submissions/leaderboard.json
+          if git diff --staged --quiet; then
+            echo "Leaderboard unchanged — nothing to commit."
+          else
+            git commit -m "chore: regenerate leaderboard from submissions [skip ci]"
+            git push
+          fi

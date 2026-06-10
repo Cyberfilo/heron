@@ -13,6 +13,12 @@ and **exact OpenAI-billed token counts** (no estimates). Full tool survey + inte
 > That's exactly what we want to isolate. Unfavorable results are kept on purpose — including that
 > heron's own namesake tool does **not** top the Grade.
 
+> ℹ️ **The canonical, always-current standings are auto-generated in [`LEADERBOARD.md`](LEADERBOARD.md)**
+> — CI re-runs every submitted tool's SQL and recomputes the numbers on one machine (so Grades/VES
+> there can differ by ~1 point from the maintainer-run figures quoted in the analysis below; EX,
+> Set-Recall, and tokens are identical). This page is the hand-written deep-dive; the leaderboard is
+> the source of truth. To add a tool, see [`../CONTRIBUTING.md`](../CONTRIBUTING.md).
+
 ## Results — v1 (100 questions, gpt-4o, exact tokens + Grade)
 
 All six tools run the **same 100 questions** on gpt-4o (temp 0). Ranked by **Grade** (0–100,

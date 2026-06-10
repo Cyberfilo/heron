@@ -132,7 +132,9 @@ def main():
                                 gen_ms=gen_ms, exec_ms=round(exec_ms, 1),
                                 gold_exec_ms=round(gold_ms, 1),
                                 prompt_tokens=ptok, completion_tokens=ctok, tokens=toks,
-                                pred_sql=pred.sql, error=perr or gerr))
+                                pred_sql=pred.sql,
+                                pred_tables=(list(pred.tables) if pred.tables else None),
+                                error=perr or gerr))
             mark = "ok " if ex else ("·  " if ex is None else "X  ")
             sys.stderr.write(f"  {mark}{q.id} EX={ex} setR={setrec} {gen_ms}ms {q.sql_shape}\n")
 

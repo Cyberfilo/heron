@@ -17,29 +17,32 @@
 
 <!-- One short paragraph: how does it ingest the schema and pick tables before generating? -->
 
-## Results (paste the `make bench` summary — 100 questions, gpt-4o, temp 0)
+## Results (your local `make bench` numbers — CI re-runs your SQL and recomputes these)
 
-| Grade | EX@1 | VES | Soft-F1 | Set-Recall | ms/q | tok/q | $/100q | errors |
-|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-|  |  |  |  |  |  |  |  |  |
+| EX@1 | VES | Soft-F1 | Set-Recall | tok/q | $/run | errors |
+|---:|---:|---:|---:|---:|---:|---:|
+|  |  |  |  |  |  |  |
 
-<!-- Unfavorable numbers stay. A leaderboard of only wins is marketing, not a benchmark. -->
+<!-- These are informational. The bot re-executes your pred_sql to produce the published numbers,
+     so don't worry about getting them perfect — but inflated claims (claimed EX >> reproduced EX)
+     fail the check. Unfavorable numbers stay; a leaderboard of only wins is marketing. -->
 
 ## Checklist
 
 - [ ] Adapter in `harness/adapters/<name>.py`, subclasses `Adapter`, registered in `harness/adapters/__init__.py`
-- [ ] **Generates SQL with the same `gpt-4o`** passed via `ctx['model']` — no fine-tuned / local model (that breaks the control; it belongs in the survey's "deferred" bucket)
+- [ ] **Generates SQL with the same `gpt-4o`** passed via `ctx['model']` — no fine-tuned / local model (that breaks the control)
 - [ ] Returns `tables` (schema-qualified) if the tool has a retrieval / schema-selection stage
 - [ ] **Real billed tokens captured** — via the usage meter automatically, or (if the SDK wraps the client) returned on the `Prediction`. No tiktoken estimates.
-- [ ] Ran on the full **100-question** suite: `make bench ADAPTER=<name> MODEL=openai/gpt-4o`
-- [ ] Committed `results_<name>_v1.json` (the per-question evidence)
-- [ ] Added a tool card to `docs/CROSS-TOOL-LEADERBOARD.md` and regenerated `docs/LEADERBOARD.md`
-- [ ] Stated the **setup reality** (install command, version pins, any integration gotcha)
-- [ ] `make audit` still passes (no question/gold changes) — or, if you touched questions, it passes for them too
+- [ ] Ran the full **100-question** suite: `make bench ADAPTER=<name> MODEL=openai/gpt-4o`
+- [ ] Created the submission: `python harness/make_submission.py results_<name>.json --tool "<Name>" --repo <url>`
+- [ ] Committed **`submissions/<name>.json`** + the adapter — and did **not** edit `docs/LEADERBOARD.md` (the bot regenerates it)
+- [ ] Stated the **setup reality** below (install command, version pins, any integration gotcha)
+- [ ] The `verify-submission` check is green (CI re-ran my SQL and accepted it)
 
 ## Reproduce
 
 ```bash
-make seed SCALE=small SEED=42
+make up && make schema && make seed SCALE=small SEED=42
 make bench ADAPTER=<name> MODEL=openai/gpt-4o
+python harness/make_submission.py results_<name>.json --tool "<Name>" --repo <url>
 ```

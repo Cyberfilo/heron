@@ -21,6 +21,7 @@ seed/.venv/
 
 # local run artifacts (session-specific, not benchmark evidence)
 api_costs.tsv
+submissions/*.verified.json
 
 # os
 .DS_Store

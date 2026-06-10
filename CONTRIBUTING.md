@@ -38,39 +38,56 @@ A question is not mergeable until `make audit` passes for it.
 
 ## Adding a tool (a system to benchmark) — first-class contribution
 
-heron is **tool-neutral**; adding your NL→SQL tool is exactly the kind of PR we want. Use the
-[add-a-tool PR template](.github/PULL_REQUEST_TEMPLATE/add-a-tool.md).
+heron is **tool-neutral**; adding your NL→SQL tool is exactly the kind of PR we want. You write a
+small adapter, run it once, and open a PR with your results — **a bot then re-runs your SQL to verify
+the numbers and regenerates the leaderboard. You never edit the leaderboard yourself.**
 
-1. **Write the adapter.** Drop a module in `harness/adapters/` subclassing `Adapter` and implementing
-   `predict(question, ctx) -> Prediction(sql, tables=None)`. `ctx` carries `{'dsn', 'model'}` (and
-   `schema_text` for the dump baseline). Return `tables` (the schema-qualified set your system
-   retrieved/selected) if it has a retrieval or schema-pruning stage — that populates the
-   **Set-Recall@k** axis. Register the name in `harness/adapters/__init__.py`.
-2. **Hold the model fixed.** The whole point is to isolate *the approach*, so your tool must generate
-   SQL with the **same `gpt-4o`** every other tool uses (passed via `ctx['model']`). Tools that
-   require a fine-tuned/local model belong in the survey's "deferred" bucket, not the leaderboard —
-   they'd break the control.
-3. **Don't hand-count tokens.** The harness meters real OpenAI usage automatically: if your tool calls
-   the `openai` SDK directly, `harness/usage_meter.py` captures the exact billed `response.usage`. If
-   it wraps the client (like LangChain), capture usage in the adapter (e.g. `get_openai_callback`) and
-   return it on the `Prediction` — the runner prefers the meter and falls back to your value. **No
-   tiktoken estimates** land in published numbers.
-4. **Patterns to copy:** `gold.py` (sanity), `raw_llm.py` (naive full-schema baseline),
-   `promptquery.py` (retrieval, exposes Set-Recall), `vanna_tool.py` (RAG), `macsql.py` /
-   `dinsql.py` (multi-step prompting frameworks).
+### 1. Write the adapter
+Drop a module in `harness/adapters/` subclassing `Adapter` and implementing
+`predict(question, ctx) -> Prediction(sql, tables=None)`. `ctx` carries `{'dsn', 'model'}` (and
+`schema_text` for the dump baseline). Return `tables` (the schema-qualified set your system
+retrieved/selected) if it has a retrieval or schema-pruning stage — that populates **Set-Recall@k**.
+Register the name in `harness/adapters/__init__.py`. Copy a pattern: `raw_llm.py` (dump baseline),
+`promptquery.py` (retrieval), `vanna_tool.py` (RAG), `macsql.py` / `dinsql.py` (multi-step prompting).
 
-Run it and regenerate the leaderboard:
+Two hard rules:
+- **Same model.** Generate SQL with the `gpt-4o` passed via `ctx['model']`. A fine-tuned/local model
+  breaks the control and belongs in the survey's "deferred" bucket, not the leaderboard.
+- **Real tokens, not estimates.** If your tool calls the `openai` SDK directly, the harness usage
+  meter captures the exact billed `response.usage` automatically. If it wraps the client (like
+  LangChain), capture usage in the adapter (e.g. `get_openai_callback`) and return it on the
+  `Prediction`.
 
+### 2. Run it on the 100-question suite
 ```bash
-make bench ADAPTER=<name> MODEL=openai/gpt-4o   # writes results_<name>.json + prints $ cost
-python harness/leaderboard.py --label "MyTool=results_<name>.json" ...   # Grade + EX + VES + cost
+make up && make schema && make seed SCALE=small SEED=42      # the gold database
+make bench ADAPTER=<name> MODEL=openai/gpt-4o                # writes results_<name>.json + prints $ cost
 ```
 
-Your tool is automatically scored on **EX@1** (execution accuracy), **VES** (correctness-gated
-efficiency of the SQL it writes), **Soft-F1** (partial credit), **Set-Recall@k** (if it exposes a
-table set), **reliability** (error rate), **token/$ economy**, and the composite **0–100 Grade** —
-all defined in [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md). Commit your `results_<name>_v1.json` so
-the number is reproducible. Favorable or not, it stays.
+### 3. Turn the run into a submission
+```bash
+python harness/make_submission.py results_<name>.json --tool "<Display Name>" --repo <your-repo-url>
+# → submissions/<name>.json
+```
+
+### 4. Open the PR
+Commit **your adapter** (`harness/adapters/<name>.py` + the one-line registration) and
+**`submissions/<name>.json`**. Do **not** touch `docs/LEADERBOARD.md` — it's auto-generated. Open the
+PR with the [add-a-tool template](.github/PULL_REQUEST_TEMPLATE/add-a-tool.md) (append
+`?template=add-a-tool.md` to the PR URL).
+
+### What the bot does (so you don't)
+- **On your PR** (`verify-submission`): re-executes every `pred_sql` in your file against a fresh gold
+  DB and recomputes EX@1 / VES / Soft-F1 / Set-Recall / errors / timing. Verified numbers show in the
+  PR's checks. The check **fails** if the submission is incomplete (not all 100), uses a non-`gpt-4o`
+  model, contains non-`SELECT` SQL, or claims an accuracy its own SQL can't reproduce.
+- **On merge** (`update-leaderboard`): regenerates `docs/LEADERBOARD.md` from all submissions and
+  commits it.
+
+Your tool is scored on **EX@1**, **VES** (efficiency of the SQL it writes), **Soft-F1**,
+**Set-Recall@k**, reliability, token/$ economy, and the composite **0–100 Grade** — all defined in
+[`docs/METHODOLOGY.md`](docs/METHODOLOGY.md). Submission format: [`submissions/README.md`](submissions/README.md).
+Favorable or not, the number stays.
 
 ## Ground rules
 
