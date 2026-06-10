@@ -60,6 +60,25 @@ class PromptQueryAdapter(Adapter):
         except Exception as e:  # noqa: BLE001
             return Prediction(sql=None, tables=tables, error=f"llm: {e}")
 
+        sql = extract_sql(raw)
+
+        # prq >= 0.3 has an execution-guided repair stage (read-only, --max-repair 1 by
+        # default): on a DB error the failed SQL + the DB's own message go back to the
+        # model once. Drive it here so the adapter measures the tool's real pipeline —
+        # same family as MAC-SQL's Refiner. Older prq versions: no repair module, skip.
+        try:
+            from promptquery.repair import execute_with_repair
+        except ImportError:
+            execute_with_repair = None
+        if execute_with_repair is not None and sql:
+            try:
+                repaired = execute_with_repair(
+                    self._db, self._llm, system, question.text, sql, max_repair=1,
+                )
+                sql = repaired.sql
+            except Exception:  # noqa: BLE001 — repair failure falls back to the original SQL
+                pass
+
         def _tok(s):  # tiktoken estimate of the actual strings sent/received
             try:
                 import tiktoken
@@ -67,6 +86,6 @@ class PromptQueryAdapter(Adapter):
             except Exception:
                 return max(1, len(s or "") // 4)
 
-        return Prediction(sql=extract_sql(raw), tables=tables,
+        return Prediction(sql=sql, tables=tables,
                           prompt_tokens=_tok(system) + _tok(question.text),
                           completion_tokens=_tok(raw or ""))
